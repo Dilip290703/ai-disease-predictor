@@ -62,6 +62,7 @@ ai-disease-predictor/
 ## ✍️ Team
 
 - Dilip Choudhary (Developer)
+- Lalit Yelane (Front-End Developer)
 - Team Pheonix
 
 ## 📜 License
