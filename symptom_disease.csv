@@ -1,0 +1,6 @@
+fever,headache,cough,nausea,diarrhea,disease
+1,1,1,0,0,Flu
+1,0,0,1,1,Food Poisoning
+0,1,0,0,0,Migraine
+1,0,1,0,1,Typhoid
+0,0,1,1,1,Stomach Infection

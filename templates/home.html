@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Disease Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #6a1b9a, #9c27b0);
+      color: white;
+    }
+    .hero {
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .feature-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .footer {
+      background-color: #4a148c;
+      padding: 20px;
+      text-align: center;
+      color: #ddd;
+    }
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .navbar .nav-link {
+      color: white !important;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">MedPredict AI</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+         <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+         {% if session['user'] %}
+         <li class="nav-item"><a class="nav-link" href="/predict">Predict</a></li>
+         <li class="nav-item"><a class="nav-link" href="/logout">Logout ({{ session['user'] }})</a></li>
+         {% else %}
+         <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+         <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+         {% endif %}
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="container hero">
+    <h1 class="display-4 fw-bold">Welcome to AI Disease Predictor</h1>
+    <p class="lead">Get instant health insights based on your symptoms using Machine Learning.</p>
+    <a href="/predict" class="btn btn-light btn-lg text-dark">Try Prediction</a>
+  </div>
+
+  <!-- Features -->
+  <div class="container pb-5">
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="feature-box">
+          <h4>⚡ Fast & Accurate</h4>
+          <p>Get real-time predictions powered by trained ML models.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-box">
+          <h4>🔒 Secure Login</h4>
+          <p>Protect your health data with secure login & session tracking.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-box">
+          <h4>🧠 AI Powered</h4>
+          <p>Built using Python, Flask, and Machine Learning algorithms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 MedPredict AI — Developed by Team Phoenix</p>
+    <p>Contact: medpredict@gmail.com</p>
+  </div>
+
+</body>
+</html>
