@@ -51,7 +51,7 @@
          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
          {% if session['user'] %}
          <li class="nav-item"><a class="nav-link" href="/predict">Predict</a></li>
-         <li class="nav-item"><a class="nav-link" href="/logout">Logout ({{ session['user'] }})</a></li>
+         <li class="nav-item"><a class="nav-link" href="/logout">Logout ({{ session['name'] }})</a></li>
          {% else %}
          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
          <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>

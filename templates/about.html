@@ -22,7 +22,21 @@
   </style>
 </head>
 <body>
-   
+     <!-- Reusable Header -->
+<nav class="navbar navbar-expand-lg" style="background-color: rgba(255,255,255,0.1);">
+  <div class="container">
+    <a class="navbar-brand text-white" href="/">🏠 MedPredict AI</a>
+    <div class="ms-auto">
+      {% if session['user'] %}
+        <span class="me-3 text-white">Welcome, {{ session['user'] }}</span>
+        <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
+      {% else %}
+        <a href="/login" class="btn btn-sm btn-light">Login</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
   <div class="container">
     <h1 class="mb-4 text-center">About the Project</h1>
     <p class="lead">
