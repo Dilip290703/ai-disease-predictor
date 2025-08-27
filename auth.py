@@ -18,7 +18,7 @@ def get_db_connection():
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        name = request.form.get('name')
+        name = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
         confirm = request.form.get('confirm')
@@ -60,16 +60,51 @@ def login():
         conn.close()
 
         if user and bcrypt.check_password_hash(user['password'], password):
+            # Store session data
             session['user'] = user['email']
             session['name'] = user['name']
             session['role'] = user['role']
-            flash("Login successful!")
-            return redirect(url_for('home'))
+
+            # Flash message
+            flash(f"Welcome {user['name']}! You are logged in as {user['role'].capitalize()}.")
+
+            # Redirect based on role
+            if user['role'] == 'admin':
+                return redirect(url_for('admin_panel'))  # Direct to Admin Panel
+            else:
+                return redirect(url_for('home'))  # Normal users go to Home
         else:
             flash("Invalid credentials.")
             return redirect(url_for('auth.login'))
 
     return render_template('login.html')
+
+# ===== ADMIN LOGIN =====
+@auth_bp.route('/admin-login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        conn = get_db_connection()
+        cur = conn.cursor(dictionary=True)
+        cur.execute("SELECT * FROM users WHERE email = %s AND role = 'admin'", (email,))
+        admin = cur.fetchone()
+        cur.close()
+        conn.close()
+
+        if admin and bcrypt.check_password_hash(admin['password'], password):
+            session['user'] = admin['email']
+            session['name'] = admin['name']
+            session['role'] = 'admin'
+            flash("Welcome Admin!")
+            return redirect(url_for('admin_panel'))
+        else:
+            flash("Invalid admin credentials.")
+            return redirect(url_for('auth.admin_login'))
+
+    return render_template('admin_login.html')
+
 
 # ===== LOGOUT =====
 @auth_bp.route('/logout')
