@@ -1,76 +1,79 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-import mysql.connector
+# auth.py
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from flask_bcrypt import Bcrypt
+import mysql.connector
 
 auth_bp = Blueprint('auth', __name__)
 bcrypt = Bcrypt()
 
-# Database connection helper
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="MITDc@29072003",  # Update if needed
+        password="MITDc@29072003",  # Change as needed
         database="disease_app"
     )
 
-# Register Route
+# ===== REGISTER =====
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm = request.form.get('confirm')
+
+        if password != confirm:
+            flash("Passwords do not match.")
+            return redirect(url_for('auth.register'))
+
+        hashed_pw = bcrypt.generate_password_hash(password).decode('utf-8')
 
         conn = get_db_connection()
         cur = conn.cursor()
         try:
             cur.execute("INSERT INTO users (name, email, password, role) VALUES (%s, %s, %s, %s)",
-                        (name, email, password, 'user'))  # default role
+                        (name, email, hashed_pw, 'user'))
             conn.commit()
-            flash("Registered successfully. Please log in.")
+            flash("Registration successful! Please log in.")
             return redirect(url_for('auth.login'))
-        except mysql.connector.errors.IntegrityError:
-            flash("User with this email already exists.")
+        except mysql.connector.IntegrityError:
+            flash("Email already registered.")
         finally:
             cur.close()
             conn.close()
+
     return render_template('register.html')
 
-
-# Login Route
+# ===== LOGIN =====
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
-        password_input = request.form['password']
+        email = request.form.get('email')
+        password = request.form.get('password')
 
         conn = get_db_connection()
-        cur = conn.cursor(dictionary=True)  # Fetch rows as dicts
-        cur.execute("SELECT id, name, email, password, role FROM users WHERE email = %s", (email,))
+        cur = conn.cursor(dictionary=True)
+        cur.execute("SELECT * FROM users WHERE email = %s", (email,))
         user = cur.fetchone()
-
         cur.close()
         conn.close()
 
-        if user and bcrypt.check_password_hash(user['password'], password_input):
+        if user and bcrypt.check_password_hash(user['password'], password):
             session['user'] = user['email']
             session['name'] = user['name']
             session['role'] = user['role']
-            flash('Login successful.')
-
-            if user['role'] == 'admin':
-                return redirect(url_for('admin_panel'))
-            else:
-                return redirect(url_for('home'))
+            flash("Login successful!")
+            return redirect(url_for('home'))
         else:
-            flash('Invalid email or password.')     
+            flash("Invalid credentials.")
+            return redirect(url_for('auth.login'))
+
     return render_template('login.html')
 
-
-# Logout Route
+# ===== LOGOUT =====
 @auth_bp.route('/logout')
 def logout():
-    session.clear()  # clears user and role
-    flash('Logged out successfully.')
+    session.clear()
+    flash("Logged out successfully.")
     return redirect(url_for('auth.login'))

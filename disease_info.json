@@ -1,0 +1,27 @@
+{
+  "pneumonia": {
+    "doctor": "Pulmonologist",
+    "remedies": ["Drink warm fluids", "Get plenty of rest", "Use a humidifier"],
+    "precautions": ["Avoid smoking", "Wash hands regularly", "Get vaccinated"]
+  },
+  "arthritis of the hip": {
+    "doctor": "Orthopedic Specialist",
+    "remedies": ["Gentle exercise", "Hot/cold therapy", "Maintain healthy weight"],
+    "precautions": ["Avoid overuse of joints", "Stay active", "Follow physiotherapy advice"]
+  },
+  "depression": {
+    "doctor": "Psychiatrist",
+    "remedies": ["Regular exercise", "Meditation & yoga", "Stay socially connected"],
+    "precautions": ["Avoid alcohol", "Maintain sleep schedule", "Seek therapy early"]
+  },
+  "eczema": {
+    "doctor": "Dermatologist",
+    "remedies": ["Moisturize daily", "Use mild soaps", "Apply cool compresses"],
+    "precautions": ["Avoid allergens", "Wear cotton clothes", "Stay hydrated"]
+  },
+  "gout": {
+    "doctor": "Rheumatologist",
+    "remedies": ["Drink more water", "Apply ice packs", "Limit red meat"],
+    "precautions": ["Avoid alcohol", "Maintain healthy weight", "Limit sugary drinks"]
+  }
+}
