@@ -65,7 +65,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
   <script>
-    const symptomWhitelist = {{ symptoms | tojson | safe }};
+    const symptomWhitelist = JSON.parse('{{ symptoms | tojson | safe }}');
     const input = document.querySelector('#symptomInput');
     const hiddenInput = document.querySelector('#hiddenSymptoms');
     const counter = document.querySelector('#counter');
