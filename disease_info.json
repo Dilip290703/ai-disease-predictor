@@ -1,27 +1,652 @@
 {
-  "pneumonia": {
-    "doctor": "Pulmonologist",
-    "remedies": ["Drink warm fluids", "Get plenty of rest", "Use a humidifier"],
-    "precautions": ["Avoid smoking", "Wash hands regularly", "Get vaccinated"]
+  "acute bronchiolitis": {
+    "doctor": "Pulmonologist / General Physician",
+    "remedies": [
+      "Rest and hydrate",
+      "Warm fluids and steam inhalation",
+      "Use a humidifier"
+    ],
+    "precautions": [
+      "Avoid smoking exposure",
+      "Wash hands frequently",
+      "Get recommended vaccines"
+    ]
+  },
+  "acute bronchitis": {
+    "doctor": "Pulmonologist / General Physician",
+    "remedies": [
+      "Rest and hydrate",
+      "Warm fluids and steam inhalation",
+      "Use a humidifier"
+    ],
+    "precautions": [
+      "Avoid smoking exposure",
+      "Wash hands frequently",
+      "Get recommended vaccines"
+    ]
+  },
+  "acute pancreatitis": {
+    "doctor": "Gastroenterologist",
+    "remedies": [
+      "Small frequent meals",
+      "Avoid fatty/spicy foods",
+      "Stay hydrated"
+    ],
+    "precautions": [
+      "Limit alcohol",
+      "Maintain fiber as advised",
+      "Seek urgent care if severe pain/fever"
+    ]
+  },
+  "acute stress reaction": {
+    "doctor": "Psychiatrist / Clinical Psychologist",
+    "remedies": [
+      "Regular physical activity",
+      "Breathing/relaxation techniques",
+      "Maintain social connection"
+    ],
+    "precautions": [
+      "Avoid alcohol and drugs",
+      "Keep regular sleep schedule",
+      "Seek therapy if symptoms persist"
+    ]
+  },
+  "anxiety": {
+    "doctor": "Psychiatrist / Clinical Psychologist",
+    "remedies": [
+      "Regular physical activity",
+      "Breathing/relaxation techniques",
+      "Maintain social connection"
+    ],
+    "precautions": [
+      "Avoid alcohol and drugs",
+      "Keep regular sleep schedule",
+      "Seek therapy if symptoms persist"
+    ]
   },
   "arthritis of the hip": {
-    "doctor": "Orthopedic Specialist",
-    "remedies": ["Gentle exercise", "Hot/cold therapy", "Maintain healthy weight"],
-    "precautions": ["Avoid overuse of joints", "Stay active", "Follow physiotherapy advice"]
+    "doctor": "Orthopedic Specialist / Rheumatologist",
+    "remedies": [
+      "Rest the affected joint",
+      "Ice/heat therapy",
+      "Gentle stretching and physiotherapy"
+    ],
+    "precautions": [
+      "Avoid overuse",
+      "Use ergonomic support",
+      "Maintain healthy weight"
+    ]
+  },
+  "benign prostatic hyperplasia (bph)": {
+    "doctor": "Urologist",
+    "remedies": [
+      "Increase water intake",
+      "Frequent urination; don't hold",
+      "Cranberry products may help"
+    ],
+    "precautions": [
+      "Wipe front-to-back",
+      "Urinate after intercourse",
+      "Limit bladder irritants (caffeine)"
+    ]
+  },
+  "bursitis": {
+    "doctor": "Orthopedic Specialist / Rheumatologist",
+    "remedies": [
+      "Rest the affected joint",
+      "Ice/heat therapy",
+      "Gentle stretching and physiotherapy"
+    ],
+    "precautions": [
+      "Avoid overuse",
+      "Use ergonomic support",
+      "Maintain healthy weight"
+    ]
+  },
+  "cholecystitis": {
+    "doctor": "Gastroenterologist",
+    "remedies": [
+      "Small frequent meals",
+      "Avoid fatty/spicy foods",
+      "Stay hydrated"
+    ],
+    "precautions": [
+      "Limit alcohol",
+      "Maintain fiber as advised",
+      "Seek urgent care if severe pain/fever"
+    ]
+  },
+  "chronic constipation": {
+    "doctor": "Gastroenterologist",
+    "remedies": [
+      "Small frequent meals",
+      "Avoid fatty/spicy foods",
+      "Stay hydrated"
+    ],
+    "precautions": [
+      "Limit alcohol",
+      "Maintain fiber as advised",
+      "Seek urgent care if severe pain/fever"
+    ]
+  },
+  "complex regional pain syndrome": {
+    "doctor": "Neurologist / Pain Medicine Specialist",
+    "remedies": [
+      "Pain management as prescribed",
+      "Gentle desensitization/physio",
+      "Adequate sleep"
+    ],
+    "precautions": [
+      "Avoid re-injury",
+      "Follow graded activity plan",
+      "Seek urgent care for red flags"
+    ]
+  },
+  "concussion": {
+    "doctor": "Neurologist / Pain Medicine Specialist",
+    "remedies": [
+      "Pain management as prescribed",
+      "Gentle desensitization/physio",
+      "Adequate sleep"
+    ],
+    "precautions": [
+      "Avoid re-injury",
+      "Follow graded activity plan",
+      "Seek urgent care for red flags"
+    ]
+  },
+  "conjunctivitis due to allergy": {
+    "doctor": "Ophthalmologist / Allergist",
+    "remedies": [
+      "Cold compresses",
+      "Lubricating eye drops",
+      "Avoid rubbing eyes"
+    ],
+    "precautions": [
+      "Avoid allergens/irritants",
+      "Practice hand hygiene",
+      "Change pillow covers frequently"
+    ]
+  },
+  "cystitis": {
+    "doctor": "Urologist",
+    "remedies": [
+      "Increase water intake",
+      "Frequent urination; don't hold",
+      "Cranberry products may help"
+    ],
+    "precautions": [
+      "Wipe front-to-back",
+      "Urinate after intercourse",
+      "Limit bladder irritants (caffeine)"
+    ]
+  },
+  "dental caries": {
+    "doctor": "Dentist",
+    "remedies": [
+      "Warm saltwater rinses",
+      "Good oral hygiene",
+      "OTC pain relief if needed"
+    ],
+    "precautions": [
+      "Regular brushing and flossing",
+      "Limit sugar intake",
+      "Dental check-ups"
+    ]
   },
   "depression": {
-    "doctor": "Psychiatrist",
-    "remedies": ["Regular exercise", "Meditation & yoga", "Stay socially connected"],
-    "precautions": ["Avoid alcohol", "Maintain sleep schedule", "Seek therapy early"]
+    "doctor": "Psychiatrist / Clinical Psychologist",
+    "remedies": [
+      "Regular physical activity",
+      "Breathing/relaxation techniques",
+      "Maintain social connection"
+    ],
+    "precautions": [
+      "Avoid alcohol and drugs",
+      "Keep regular sleep schedule",
+      "Seek therapy if symptoms persist"
+    ]
+  },
+  "developmental disability": {
+    "doctor": "Developmental Pediatrician / Neurologist",
+    "remedies": [
+      "Early intervention & therapy",
+      "Consistent routines",
+      "Family education/support"
+    ],
+    "precautions": [
+      "Regular follow-ups",
+      "Collaborate with school",
+      "Monitor for comorbidities"
+    ]
+  },
+  "diverticulitis": {
+    "doctor": "Gastroenterologist",
+    "remedies": [
+      "Small frequent meals",
+      "Avoid fatty/spicy foods",
+      "Stay hydrated"
+    ],
+    "precautions": [
+      "Limit alcohol",
+      "Maintain fiber as advised",
+      "Seek urgent care if severe pain/fever"
+    ]
   },
   "eczema": {
     "doctor": "Dermatologist",
-    "remedies": ["Moisturize daily", "Use mild soaps", "Apply cool compresses"],
-    "precautions": ["Avoid allergens", "Wear cotton clothes", "Stay hydrated"]
+    "remedies": [
+      "Gentle moisturizers",
+      "Avoid harsh soaps",
+      "Cool compresses"
+    ],
+    "precautions": [
+      "Identify and avoid triggers",
+      "Use sunscreen",
+      "Keep nails short to avoid scratching"
+    ]
+  },
+  "esophagitis": {
+    "doctor": "Gastroenterologist",
+    "remedies": [
+      "Small frequent meals",
+      "Avoid fatty/spicy foods",
+      "Stay hydrated"
+    ],
+    "precautions": [
+      "Limit alcohol",
+      "Maintain fiber as advised",
+      "Seek urgent care if severe pain/fever"
+    ]
+  },
+  "fungal infection of the hair": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "gastrointestinal hemorrhage": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
   },
   "gout": {
-    "doctor": "Rheumatologist",
-    "remedies": ["Drink more water", "Apply ice packs", "Limit red meat"],
-    "precautions": ["Avoid alcohol", "Maintain healthy weight", "Limit sugary drinks"]
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "hyperemesis gravidarum": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "hypoglycemia": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "infectious gastroenteritis": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "injury to the arm": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "injury to the leg": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "liver disease": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "marijuana abuse": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "multiple sclerosis": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "noninfectious gastroenteritis": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "nose disorder": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "obstructive sleep apnea (osa)": {
+    "doctor": "General Physician",
+    "remedies": [
+      "Rest and hydration",
+      "Balanced diet",
+      "OTC meds as advised"
+    ],
+    "precautions": [
+      "Monitor symptoms",
+      "Follow-up if no improvement",
+      "Healthy lifestyle"
+    ]
+  },
+  "otitis media": {
+    "doctor": "ENT Specialist / General Physician",
+    "remedies": [
+      "Warm saline gargles",
+      "Adequate fluids",
+      "OTC analgesics if needed"
+    ],
+    "precautions": [
+      "Avoid sharing utensils",
+      "Complete antibiotics if prescribed",
+      "Rest voice and avoid smoke"
+    ]
+  },
+  "peripheral nerve disorder": {
+    "doctor": "Neurologist / Pain Medicine Specialist",
+    "remedies": [
+      "Pain management as prescribed",
+      "Gentle desensitization/physio",
+      "Adequate sleep"
+    ],
+    "precautions": [
+      "Avoid re-injury",
+      "Follow graded activity plan",
+      "Seek urgent care for red flags"
+    ]
+  },
+  "personality disorder": {
+    "doctor": "Psychiatrist / Clinical Psychologist",
+    "remedies": [
+      "Regular physical activity",
+      "Breathing/relaxation techniques",
+      "Maintain social connection"
+    ],
+    "precautions": [
+      "Avoid alcohol and drugs",
+      "Keep regular sleep schedule",
+      "Seek therapy if symptoms persist"
+    ]
+  },
+  "pneumonia": {
+    "doctor": "Pulmonologist / General Physician",
+    "remedies": [
+      "Rest and hydrate",
+      "Warm fluids and steam inhalation",
+      "Use a humidifier"
+    ],
+    "precautions": [
+      "Avoid smoking exposure",
+      "Wash hands frequently",
+      "Get recommended vaccines"
+    ]
+  },
+  "problem during pregnancy": {
+    "doctor": "Obstetrician-Gynecologist (OB-GYN)",
+    "remedies": [
+      "Rest and hydration",
+      "Warm sitz baths if advised",
+      "Pelvic floor relaxation techniques"
+    ],
+    "precautions": [
+      "Avoid irritants/perfumed products",
+      "Safe sexual practices",
+      "Seek urgent care for bleeding/severe pain"
+    ]
+  },
+  "psoriasis": {
+    "doctor": "Dermatologist",
+    "remedies": [
+      "Gentle moisturizers",
+      "Avoid harsh soaps",
+      "Cool compresses"
+    ],
+    "precautions": [
+      "Identify and avoid triggers",
+      "Use sunscreen",
+      "Keep nails short to avoid scratching"
+    ]
+  },
+  "pyogenic skin infection": {
+    "doctor": "Dermatologist",
+    "remedies": [
+      "Gentle moisturizers",
+      "Avoid harsh soaps",
+      "Cool compresses"
+    ],
+    "precautions": [
+      "Identify and avoid triggers",
+      "Use sunscreen",
+      "Keep nails short to avoid scratching"
+    ]
+  },
+  "sebaceous cyst": {
+    "doctor": "Dermatologist",
+    "remedies": [
+      "Gentle moisturizers",
+      "Avoid harsh soaps",
+      "Cool compresses"
+    ],
+    "precautions": [
+      "Identify and avoid triggers",
+      "Use sunscreen",
+      "Keep nails short to avoid scratching"
+    ]
+  },
+  "sickle cell crisis": {
+    "doctor": "Hematologist",
+    "remedies": [
+      "Hydration",
+      "Pain control as prescribed",
+      "Folic acid if advised"
+    ],
+    "precautions": [
+      "Avoid extreme temperatures",
+      "Prevent infections (vaccines)",
+      "Seek urgent care for crisis signs"
+    ]
+  },
+  "spinal stenosis": {
+    "doctor": "Orthopedic Specialist / Rheumatologist",
+    "remedies": [
+      "Rest the affected joint",
+      "Ice/heat therapy",
+      "Gentle stretching and physiotherapy"
+    ],
+    "precautions": [
+      "Avoid overuse",
+      "Use ergonomic support",
+      "Maintain healthy weight"
+    ]
+  },
+  "spondylosis": {
+    "doctor": "Orthopedic Specialist / Rheumatologist",
+    "remedies": [
+      "Rest the affected joint",
+      "Ice/heat therapy",
+      "Gentle stretching and physiotherapy"
+    ],
+    "precautions": [
+      "Avoid overuse",
+      "Use ergonomic support",
+      "Maintain healthy weight"
+    ]
+  },
+  "spontaneous abortion": {
+    "doctor": "Obstetrician-Gynecologist (OB-GYN)",
+    "remedies": [
+      "Rest and hydration",
+      "Warm sitz baths if advised",
+      "Pelvic floor relaxation techniques"
+    ],
+    "precautions": [
+      "Avoid irritants/perfumed products",
+      "Safe sexual practices",
+      "Seek urgent care for bleeding/severe pain"
+    ]
+  },
+  "sprain or strain": {
+    "doctor": "Orthopedic Specialist / Rheumatologist",
+    "remedies": [
+      "Rest the affected joint",
+      "Ice/heat therapy",
+      "Gentle stretching and physiotherapy"
+    ],
+    "precautions": [
+      "Avoid overuse",
+      "Use ergonomic support",
+      "Maintain healthy weight"
+    ]
+  },
+  "strep throat": {
+    "doctor": "ENT Specialist / General Physician",
+    "remedies": [
+      "Warm saline gargles",
+      "Adequate fluids",
+      "OTC analgesics if needed"
+    ],
+    "precautions": [
+      "Avoid sharing utensils",
+      "Complete antibiotics if prescribed",
+      "Rest voice and avoid smoke"
+    ]
+  },
+  "vaginal cyst": {
+    "doctor": "Obstetrician-Gynecologist (OB-GYN)",
+    "remedies": [
+      "Rest and hydration",
+      "Warm sitz baths if advised",
+      "Pelvic floor relaxation techniques"
+    ],
+    "precautions": [
+      "Avoid irritants/perfumed products",
+      "Safe sexual practices",
+      "Seek urgent care for bleeding/severe pain"
+    ]
+  },
+  "vulvodynia": {
+    "doctor": "Obstetrician-Gynecologist (OB-GYN)",
+    "remedies": [
+      "Rest and hydration",
+      "Warm sitz baths if advised",
+      "Pelvic floor relaxation techniques"
+    ],
+    "precautions": [
+      "Avoid irritants/perfumed products",
+      "Safe sexual practices",
+      "Seek urgent care for bleeding/severe pain"
+    ]
   }
 }
