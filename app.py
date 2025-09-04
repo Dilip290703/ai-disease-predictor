@@ -32,6 +32,10 @@ with open('label_encoder.pkl', 'rb') as f:
 with open('feature_list.pkl', 'rb') as f:
     FEATURE_LIST = pickle.load(f)
 
+# Load disease info (doctor + remedies + precautions)
+with open("disease_info.json", "r") as f:
+    DISEASE_INFO = json.load(f)
+
 # ===== Load disease info JSON =====
 try:
     with open("disease_info.json", "r") as f:
@@ -148,6 +152,25 @@ def predict():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/doctor/<disease>')
+def doctor_page(disease):
+    disease_key = disease.strip().lower()
+
+    # Try to fetch info from JSON
+    info = DISEASE_INFO.get(disease_key, {
+        "doctor": "General Physician",
+        "remedies": ["No data available"],
+        "precautions": ["No data available"]
+    })
+
+    return render_template(
+        "doctor.html",
+        disease=disease,
+        doctor=info["doctor"],
+        remedies=info.get("remedies", []),
+        precautions=info.get("precautions", [])
+    )
 
 @app.route('/admin')
 def admin_panel():

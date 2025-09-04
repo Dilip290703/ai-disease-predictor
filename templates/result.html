@@ -36,6 +36,12 @@
         <h4 class="mt-4">Recommended Doctor:</h4>
         <p>{{ prediction.doctor }}</p>
 
+        <div class="text-center mt-4">
+          <a href="{{ url_for('doctor_page', disease=prediction.disease) }}" class="btn btn-primary btn-lg">
+            👨‍⚕️ See Doctor Recommendation
+          </a>
+        </div>
+
         <h4>Home Remedies:</h4>
         <ul>
           {% for remedy in prediction.remedies %}
