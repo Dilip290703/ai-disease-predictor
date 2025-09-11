@@ -157,7 +157,7 @@ def about():
 def doctor_page(disease):
     disease_key = disease.strip().lower()
 
-    # Try to fetch info from JSON
+    # Fetch info from JSON
     info = DISEASE_INFO.get(disease_key, {
         "doctor": "General Physician",
         "remedies": ["No data available"],
@@ -169,8 +169,10 @@ def doctor_page(disease):
         disease=disease,
         doctor=info["doctor"],
         remedies=info.get("remedies", []),
-        precautions=info.get("precautions", [])
+        precautions=info.get("precautions", []),
+        google_api_key="AIzaSyCojlbzzWiC7puLXVgpyaYQhSx39vtyCrM"  # Pass API key
     )
+
 
 @app.route('/admin')
 def admin_panel():

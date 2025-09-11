@@ -10,14 +10,13 @@
       color: white;
       font-family: 'Segoe UI', sans-serif;
     }
-    .container { margin-top: 60px; max-width: 800px; }
+    .container { margin-top: 60px; max-width: 900px; }
     .info-box {
       background: rgba(255, 255, 255, 0.12);
       border-radius: 12px;
       padding: 25px;
     }
-    h2 { font-weight: bold; }
-    ul { text-align: left; }
+    .doctor-list { margin-top: 20px; text-align: left; }
   </style>
 </head>
 <body>
@@ -25,12 +24,56 @@
     <div class="info-box text-center">
       <h2>🩺 Doctor Recommendation for <span class="text-warning">{{ disease }}</span></h2>
 
-      <h4 class="mt-4">Recommended Doctor:</h4>
+      <h4 class="mt-4">Specialist:</h4>
       <p>{{ doctor }}</p>
+
+      <h4>Home Remedies:</h4>
+      <ul>
+        {% for remedy in remedies %}
+          <li>{{ remedy }}</li>
+        {% endfor %}
+      </ul>
+
+      <h4>Precautions:</h4>
+      <ul>
+        {% for precaution in precautions %}
+          <li>{{ precaution }}</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Location Search -->
+      <div class="mt-4">
+        <h4>🔍 Find Nearby Doctors</h4>
+        <input type="text" id="locationInput" class="form-control" placeholder="Enter your city or area">
+        <button class="btn btn-light mt-2" onclick="searchDoctors()">Search</button>
+      </div>
+
+      <!-- Doctor Results -->
+      <div id="doctorResults" class="doctor-list mt-3"></div>
 
       <a href="/predict" class="btn btn-light mt-3">🔙 New Prediction</a>
       <a href="/" class="btn btn-outline-light mt-3">🏠 Home</a>
     </div>
   </div>
+
+  <script>
+    function searchDoctors() {
+      const location = document.getElementById("locationInput").value;
+      const specialty = "{{ doctor }}";
+      const resultsDiv = document.getElementById("doctorResults");
+
+      if (!location) {
+        alert("Please enter a location.");
+        return;
+      }
+
+      // Build Google Maps search URL
+      const url = `https://www.google.com/maps/search/${encodeURIComponent(specialty)}+doctor+near+${encodeURIComponent(location)}`;
+
+      resultsDiv.innerHTML = `
+        <p>👉 <a href="${url}" target="_blank" class="btn btn-warning">View Nearby Doctors on Google Maps</a></p>
+      `;
+    }
+  </script>
 </body>
 </html>
