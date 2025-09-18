@@ -49,31 +49,32 @@
       </div>
 
       <!-- Doctor Results -->
-      <div id="doctorResults" class="doctor-list mt-3"></div>
-
-      <a href="/predict" class="btn btn-light mt-3">🔙 New Prediction</a>
-      <a href="/" class="btn btn-outline-light mt-3">🏠 Home</a>
-    </div>
+      <div id="mapContainer" class="mt-4" style="width:100%; height:450px; display:none;">
+       <iframe id="mapFrame" width="100%" height="450" style="border:0;" 
+        loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
   </div>
 
-  <script>
-    function searchDoctors() {
-      const location = document.getElementById("locationInput").value;
-      const specialty = "{{ doctor }}";
-      const resultsDiv = document.getElementById("doctorResults");
+<script>
+  function searchDoctors() {
+    const location = document.getElementById("locationInput").value;
+    const specialty = "{{ doctor }}";
+    const mapContainer = document.getElementById("mapContainer");
+    const mapFrame = document.getElementById("mapFrame");
 
-      if (!location) {
-        alert("Please enter a location.");
-        return;
-      }
-
-      // Build Google Maps search URL
-      const url = `https://www.google.com/maps/search/${encodeURIComponent(specialty)}+doctor+near+${encodeURIComponent(location)}`;
-
-      resultsDiv.innerHTML = `
-        <p>👉 <a href="${url}" target="_blank" class="btn btn-warning">View Nearby Doctors on Google Maps</a></p>
-      `;
+    if (!location) {
+      alert("Please enter a location.");
+      return;
     }
-  </script>
+
+    // Build Google Maps Embed URL
+    const query = `${specialty} doctor near ${location}`;
+    const embedUrl = `https://www.google.com/maps/embed/v1/search?key={{ google_api_key }}&q=${encodeURIComponent(query)}`;
+
+    mapFrame.src = embedUrl;
+    mapContainer.style.display = "block";
+  }
+</script>
+
 </body>
 </html>
