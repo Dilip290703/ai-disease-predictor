@@ -1,0 +1,9 @@
+flask
+flask-bcrypt
+numpy
+pandas
+scikit-learn
+lightgbm
+mysql-connector-python
+reportlab
+fpdf
