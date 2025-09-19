@@ -19,6 +19,14 @@
       {
         "button-name": "off"
       }
+    ],
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "iframe[referrerpolicy=no-referrer-when-downgrade]"
+        ]
+      }
     ]
   }
 }
