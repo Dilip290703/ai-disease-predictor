@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 flask
 flask-bcrypt
 numpy
@@ -7,3 +8,6 @@ lightgbm
 mysql-connector-python
 reportlab
 fpdf
+=======
+#this is a sample requirements.txt file
+>>>>>>> 7be8fc9c8d500d78825785a405529c53f2c10002
