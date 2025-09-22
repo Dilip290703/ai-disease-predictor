@@ -27,19 +27,12 @@
       <h4 class="mt-4">Specialist:</h4>
       <p>{{ doctor }}</p>
 
-      <h4>Home Remedies:</h4>
-      <ul>
-        {% for remedy in remedies %}
-          <li>{{ remedy }}</li>
-        {% endfor %}
-      </ul>
+<div class="text-center mt-4">
+  <a href="{{ url_for('remedies_page', disease=disease) }}" class="btn btn-warning">
+    🍵 View Home Remedies & Precautions
+  </a>
+</div>
 
-      <h4>Precautions:</h4>
-      <ul>
-        {% for precaution in precautions %}
-          <li>{{ precaution }}</li>
-        {% endfor %}
-      </ul>
 
       <!-- Location Search -->
       <div class="mt-4">
