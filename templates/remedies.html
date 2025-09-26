@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Remedies & Precautions - MedPredict AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #4a148c, #6a1b9a);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .container { margin-top: 60px; max-width: 900px; }
+    .info-box {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 25px;
+    }
+    h2, h4 { font-weight: bold; }
+    ul { text-align: left; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="info-box text-center">
+      <h2>🍵 Home Remedies & Precautions for <span class="text-warning">{{ disease }}</span></h2>
+
+      <h4 class="mt-4">Home Remedies:</h4>
+      <ul>
+        {% for remedy in remedies %}
+          <li>{{ remedy }}</li>
+        {% endfor %}
+      </ul>
+
+      <h4 class="mt-4">Precautions:</h4>
+      <ul>
+        {% for precaution in precautions %}
+          <li>{{ precaution }}</li>
+        {% endfor %}
+      </ul>
+
+      <a href="/predict" class="btn btn-light mt-3">🔙 New Prediction</a>
+      <a href="/" class="btn btn-outline-light mt-3">🏠 Home</a>
+    </div>
+  </div>
+</body>
+</html>

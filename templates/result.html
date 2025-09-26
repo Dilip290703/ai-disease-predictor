@@ -42,19 +42,6 @@
           </a>
         </div>
 
-        <h4>Home Remedies:</h4>
-        <ul>
-          {% for remedy in prediction.remedies %}
-            <li>{{ remedy }}</li>
-          {% endfor %}
-        </ul>
-
-        <h4>Precautions:</h4>
-        <ul>
-          {% for precaution in prediction.precautions %}
-            <li>{{ precaution }}</li>
-          {% endfor %}
-        </ul>
 
         {% if report_link %}
           <a href="{{ report_link }}" class="btn btn-light btn-report">📄 Download PDF Report</a>
