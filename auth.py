@@ -8,10 +8,11 @@ bcrypt = Bcrypt()
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
+        host="127.0.0.1",
         user="root",
-        password="MITDc@29072003",  # Change as needed
-        database="disease_app"
+        password="Lalit@94",  # Change as needed
+        database="disease_app",
+        auth_plugin="mysql_native_password"
     )
 
 # ===== REGISTER =====
