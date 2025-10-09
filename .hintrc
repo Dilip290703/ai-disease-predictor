@@ -27,6 +27,7 @@
           "iframe[referrerpolicy=no-referrer-when-downgrade]"
         ]
       }
-    ]
+    ],
+    "compat-api/css": "off"
   }
 }

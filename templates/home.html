@@ -3,109 +3,243 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Disease Predictor</title>
+  <title>MedPredict AI – Home</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
   <style>
+    /* --- THEME VARIABLES --- */
+    :root {
+      --color-primary-blue: #007bff;
+      --color-secondary-cyan: #00bcd4;
+      --color-text-dark: #212529;
+      --color-text-light: #555;
+      --color-background-white: #ffffff;
+      --color-background-light: #f8f9fa;
+      --font-family-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --border-radius-card: 12px;
+    }
+
     body {
-      background: linear-gradient(to right, #6a1b9a, #9c27b0);
-      color: white;
+      font-family: var(--font-family-primary);
+      color: var(--color-text-dark);
+      background-color: var(--color-background-white);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
-    .hero {
-      padding: 100px 20px;
+
+    /* --- NAVBAR --- */
+    .navbar {
+      background-color: var(--color-background-white);
+      box-shadow: var(--shadow-medium);
+      padding: 1rem 2rem;
+    }
+
+    .navbar-brand {
+      color: var(--color-primary-blue) !important;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link {
+      color: var(--color-text-dark) !important;
+      font-weight: 500;
+      margin: 0 10px;
+    }
+
+    .nav-link:hover {
+      color: var(--color-primary-blue) !important;
+    }
+
+    /* --- BUTTONS --- */
+    .btn-light, .btn-outline-dark, .btn-primary {
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary-blue);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-outline-dark:hover {
+      background-color: var(--color-text-dark);
+      color: #fff !important;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+      background-image: url('https://i.imgur.com/your-doctors-image-placeholder.jpg');
+      background-size: cover;
+      background-position: center top;
+      position: relative;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      color: var(--color-background-white);
+      margin-bottom: 60px;
     }
-    .feature-box {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 20px;
-      color: #fff;
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 123, 255, 0.8),
+        rgba(0, 188, 212, 0.6)
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
       margin-bottom: 20px;
     }
-    .footer {
-      background-color: #4a148c;
-      padding: 20px;
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--color-background-white);
+      margin-bottom: 30px;
+    }
+
+    /* --- FEATURES SECTION --- */
+    .features {
+      padding: 80px 20px;
+      background-color: var(--color-background-light);
+    }
+
+    .features h2 {
       text-align: center;
-      color: #ddd;
+      color: var(--color-text-dark);
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 50px;
     }
-    .navbar {
-      background-color: rgba(255, 255, 255, 0.1);
+
+    .feature-card {
+      background-color: var(--color-background-white);
+      border-radius: var(--border-radius-card);
+      box-shadow: var(--shadow-medium);
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      height: 100%;
     }
-    .navbar .nav-link {
-      color: white !important;
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
-    .navbar-brand {
-      font-weight: bold;
-      color: #fff;
+
+    .feature-card h5 {
+      color: var(--color-primary-blue);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--color-text-light);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--color-background-light);
+      text-align: center;
+      padding: 20px;
+      color: var(--color-text-light);
+      border-top: 1px solid rgba(0,0,0,0.1);
     }
   </style>
 </head>
+
 <body>
-  
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="/">MedPredict AI</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="/about">🏠 MedPredict AI</a>
+
+      <div class="ms-auto d-flex align-items-center gap-3">
+        <a href="/" class="nav-link">Home</a>
 
         {% if session['user'] %}
-          <li class="nav-item"><a class="nav-link" href="/predict">Predict</a></li>
-
-          {% if session['role'] == 'admin' %}
-            <li class="nav-item"><a class="nav-link" href="/admin">Admin Panel</a></li>
-          {% endif %}
-
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout ({{ session['name'] }})</a>
-          </li>
+          <span class="me-2 text-dark">Welcome, {{ session['user'] }}</span>
+          <a href="/logout" class="btn btn-sm btn-outline-dark">Logout</a>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+          <a href="/login" class="btn btn-sm btn-light">Login</a>
+          <a href="/register" class="btn btn-sm btn-primary">Register</a>
         {% endif %}
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-  <!-- Hero -->
-  <div class="container hero">
-    <h1 class="display-4 fw-bold">Welcome to AI Disease Predictor</h1>
-    <p class="lead">Get instant health insights based on your symptoms using Machine Learning.</p>
-    <a href="/predict" class="btn btn-light btn-lg text-dark">Try Prediction</a>
-  </div>
-
-  <!-- Features -->
-  <div class="container pb-5">
-    <div class="row text-center">
-      <div class="col-md-4">
-        <div class="feature-box">
-          <h4>⚡ Fast & Accurate</h4>
-          <p>Get real-time predictions powered by trained ML models.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-box">
-          <h4>🔒 Secure Login</h4>
-          <p>Protect your health data with secure login & session tracking.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-box">
-          <h4>🧠 AI Powered</h4>
-          <p>Built using Python, Flask, and Machine Learning algorithms.</p>
-        </div>
       </div>
     </div>
-  </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to <strong>MedPredict AI</strong></h1>
+      <p>Your AI-powered companion for smarter disease prediction and early health insights.</p>
+      <a href="/predict" class="btn btn-primary">Start Prediction</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Body of Work</h2>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h5>Early Diagnosis</h5>
+            <p>Predict potential diseases before they become critical using advanced AI models trained on medical datasets.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h5>Data Security</h5>
+            <p>We prioritize user privacy and ensure your data remains safe through encrypted, anonymized processes.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h5>Precision Analytics</h5>
+            <p>Visualize accurate predictions and health insights with detailed explanations powered by machine learning.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <div class="footer">
-    <p>&copy; 2025 MedPredict AI — Developed by Team Phoenix</p>
-    <p>Contact: medpredict@gmail.com</p>
-  </div>
+  <footer>
+    <p>© 2025 MedPredict AI | Designed with ❤ for better healthcare</p>
+  </footer>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

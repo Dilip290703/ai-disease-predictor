@@ -2,418 +2,234 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>About – AI Disease Predictor</title>
+  <title>About – MedPredict AI</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Montserrat:wght@700&display=swap');
+    /* --- THEME VARIABLES --- */
+    :root {
+      --color-primary-blue: #007bff;
+      --color-secondary-cyan: #00bcd4;
+      --color-text-dark: #212529;
+      --color-text-light: #555;
+      --color-background-white: #ffffff;
+      --color-background-light: #f8f9fa;
+      --font-family-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --border-radius-card: 12px;
+    }
 
+    /* --- BASE --- */
     body {
-      background: #f5f5dc; /* Light beige background from heart template */
-      color: #5d4037; /* Brown text for formal look */
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      min-height: 100vh;
+      font-family: var(--font-family-primary);
+      background-color: var(--color-background-white);
+      color: var(--color-text-dark);
       margin: 0;
+      padding: 0;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Divider lines from template */
-    .divider {
-      border-top: 1px solid #5d4037;
-      margin: 2rem auto;
-      width: 80%;
-      position: relative;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      position: absolute;
-      top: -6px;
-      width: 10px;
-      height: 10px;
-      background: #5d4037;
-      border-radius: 50%;
-    }
-    .divider::before { left: 0; }
-    .divider::after { right: 0; }
-
-    /* Floating medical icons */
-    .floating-icon {
-      position: absolute;
-      opacity: 0.18;
-      filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.1));
-      pointer-events: none;
-      animation-timing-function: ease-in-out;
-      transition: opacity 0.3s ease;
-      z-index: 0;
-    }
-    .floating-icon svg {
-      width: 60px;
-      height: 60px;
-      fill: none;
-      stroke-width: 2.4;
-      stroke-linejoin: round;
-      stroke-linecap: round;
-      stroke: #5d4037; /* Brown stroke to match template */
-      filter: drop-shadow(0 1px 2px #5d403777);
-    }
-
-    /* Color variations adjusted to brown tones */
-    .color-purple { color: #5d4037; }
-    .color-cyan { color: #6d4c41; }
-    .color-pink { color: #8d6e63; }
-    .color-blue { color: #4e342e; }
-    .color-gold { color: #795548; }
-    .color-lavender { color: #a1887f; }
-
-    /* Size variations */
-    .size-small svg { width: 36px; height: 36px; }
-    .size-medium svg { width: 54px; height: 54px; }
-    .size-large svg { width: 74px; height: 74px; }
-
-    /* Floating animations */
-    @keyframes floatVertical {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
-    }
-    @keyframes floatHorizontal {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(18px); }
-    }
-    .float1 { top: 12%; left: 10%; animation: floatVertical 7s ease-in-out infinite; }
-    .float2 { top: 55%; left: 15%; animation: floatHorizontal 8.5s ease-in-out infinite; }
-    .float3 { top: 30%; left: 78%; animation: floatVertical 9s ease-in-out infinite; }
-    .float4 { top: 75%; left: 72%; animation: floatHorizontal 10s ease-in-out infinite; }
-    .float5 { top: 65%; left: 88%; animation: floatVertical 7.5s ease-in-out infinite; }
-    .float6 { top: 82%; left: 35%; animation: floatHorizontal 8.8s ease-in-out infinite; }
-    .float7 { top: 47%; left: 60%; animation: floatVertical 6.5s ease-in-out infinite; }
-    .float8 { top: 36%; left: 33%; animation: floatHorizontal 7.7s ease-in-out infinite; }
-    .float9 { top: 80%; left: 55%; animation: floatHorizontal 9.2s ease-in-out infinite; }
-
-    .container {
-      padding: 60px 20px;
-      max-width: 960px;
-      position: relative;
-      z-index: 1;
     }
 
     h1, h3, h5 {
-      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--color-text-dark);
       font-weight: 700;
-      letter-spacing: 0.03em;
-      color: #5d4037; /* Brown text */
     }
 
-    /* Navbar adjusted to template */
-    nav.navbar {
-      background-color: rgba(93, 64, 55, 0.1); /* Subtle brown tint */
-      box-shadow: 0 2px 10px rgba(93, 64, 55, 0.15);
-      border-radius: 0.5rem;
-      margin: 1rem;
-      position: relative;
-      z-index: 3;
+    p {
+      color: var(--color-text-light);
     }
+
+    /* --- NAVBAR --- */
+    .navbar {
+      background-color: var(--color-background-white);
+      box-shadow: var(--shadow-medium);
+      padding: 1rem 2rem;
+    }
+
     .navbar-brand {
+      color: var(--color-primary-blue) !important;
       font-weight: 700;
-      font-size: 1.4rem;
-      color: #5d4037 !important;
+      letter-spacing: 0.5px;
     }
 
-    /* Cards adjusted to template */
-    .card {
-      background-color: rgba(93, 64, 55, 0.05); /* Subtle brown tint */
-      border: none;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 1.5px 12px rgba(38, 50, 56, 0.1) inset;
-      transition: transform 0.4s cubic-bezier(.19,1,.22,1), box-shadow 0.3s;
-      border-radius: 1.5rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      cursor: default;
-      padding: 1rem;
-    }
-    .card:hover {
-      transform: translateY(-12px) scale(1.05) rotateX(7deg) rotateY(-7deg);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.2), 0 1.5px 16px rgba(38, 50, 56, 0.15) inset;
-      z-index: 4;
-    }
-    .card .icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      filter: drop-shadow(0 1px 6px rgba(93, 64, 55, 0.3));
-      user-select: none;
+    .nav-link {
+      color: var(--color-text-dark) !important;
+      font-weight: 500;
+      margin: 0 10px;
     }
 
-    /* Overlay circle in card adjusted */
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -25px; right: -25px;
-      width: 70px; height: 70px;
-      background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=80&q=80') no-repeat center/cover;
-      opacity: 0.12;
-      z-index: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(0.5px);
+    .nav-link:hover {
+      color: var(--color-primary-blue) !important;
+    }
+
+    /* Keep your original buttons */
+    .btn-light, .btn-outline-light {
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 10px 25px;
+    }
+
+    /* --- MAIN CONTENT --- */
+    .container {
+      max-width: 1000px;
+      padding: 4rem 2rem;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .divider {
+      height: 3px;
+      background-color: var(--color-primary-blue);
+      width: 100px;
+      margin: 1rem auto 2rem;
+      border-radius: 3px;
+    }
+
+    p.lead {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 3rem;
     }
 
     hr {
-      border: 1px solid rgba(93, 64, 55, 0.3);
-      margin-top: 2rem;
-      margin-bottom: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 3rem 0;
     }
 
-    /* Overlay floating SVG */
-    .overlay-svg {
-      position: absolute;
-      left: 12px; bottom: -10px;
-      z-index: 2;
-      pointer-events: none;
-      animation: floatAnim 6s infinite ease-in-out alternate;
-      user-select: none;
-    }
-    @keyframes floatAnim {
-      from { transform: translateY(0) scale(1);}
-      to { transform: translateY(-15px) scale(1.08);}
-    }
-
-    /* Buttons and links adjusted */
-    a.btn-light, a.btn-outline-light {
-      border-radius: 20px;
-      padding: 0.3rem 1rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: background-color 0.3s;
-      background: #5d4037;
-      color: white !important;
+    /* --- CARD --- */
+    .card {
+      background-color: var(--color-background-white);
       border: none;
-    }
-    a.btn-light:hover {
-      background-color: #8d6e63;
-      color: white !important;
-    }
-    a.btn-outline-light:hover {
-      background-color: #5d4037;
-      border-color: #5d4037;
-      color: white;
+      border-radius: var(--border-radius-card);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-medium);
+      transition: all 0.3s ease;
     }
 
-    /* Heart illustration from template (SVG) */
-    .heart-illustration {
-      width: 300px;
-      height: auto;
-      position: absolute;
-      right: 20px;
-      top: 100px;
-      opacity: 0.9;
-      z-index: 2;
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--color-secondary-cyan);
+    }
+
+    .card h5 {
+      color: var(--color-primary-blue);
+      margin-bottom: 10px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--color-background-light);
+      text-align: center;
+      padding: 20px;
+      color: var(--color-text-light);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 0;
     }
   </style>
 </head>
+
 <body>
-
-  <!-- Heart Illustration -->
-<svg width="180" height="140" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" class="heart-illustration">
-  <defs>
-    <!-- Gradient fill -->
-    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ff4d6d"/>
-      <stop offset="100%" stop-color="#d81b60"/>
-    </linearGradient>
-
-    <!-- Glow effect -->
-    <radialGradient id="heartGlow" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#ff6b81" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#ff6b81" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-
-  <!-- Glow -->
-  <circle cx="100" cy="90" r="80" fill="url(#heartGlow)"/>
-
-  <!-- Heart shape -->
-  <path d="M100 160
-           C60 130 20 90 40 55
-           C55 30 85 30 100 55
-           C115 30 145 30 160 55
-           C180 90 140 130 100 160Z"
-        fill="url(#heartGrad)"/>
-
-  <!-- Highlight -->
-  <path d="M80 70 Q100 40 120 70" stroke="white" stroke-opacity="0.4" stroke-width="4" fill="none" stroke-linecap="round"/>
-</svg>
-
-
-  <!-- Floating medical icons -->
-  <div class="floating-icon float1 size-large color-purple" style="top:12%; left:10%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M24 42s-12-7.36-12-18a8 8 0 0 1 16 0 8 8 0 0 1 16 0c0 10.64-12 18-12 18z"/>
-      <polyline points="16 29 22 24 26 28 32 21"/>
-    </svg>
-  </div>
-  <div class="floating-icon float2 size-medium color-cyan" style="top:55%; left:15%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M11.6 6v14a8.4 8.4 0 0 0 16.8 0V6"/>
-      <circle cx="11.5" cy="6.5" r="4"/>
-      <circle cx="28.5" cy="6.5" r="4"/>
-      <path d="M28.4 32A8.4 8.4 0 1 1 11.6 32"/>
-    </svg>
-  </div>
-  <div class="floating-icon float3 size-medium color-pink" style="top:30%; left:78%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="11" y="11" width="26" height="26" rx="13" ry="13"/>
-      <line x1="17" y1="31" x2="31" y2="17"/>
-    </svg>
-  </div>
-  <div class="floating-icon float4 size-small color-blue" style="top:75%; left:72%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="24" y1="10" x2="24" y2="38"/>
-      <line x1="10" y1="24" x2="38" y2="24"/>
-    </svg>
-  </div>
-  <div class="floating-icon float5 size-large color-gold" style="top:65%; left:88%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="12" y="20" width="24" height="8" rx="4" ry="4"/>
-      <circle cx="18" cy="24" r="1.5"/>
-      <circle cx="24" cy="24" r="1.5"/>
-      <circle cx="30" cy="24" r="1.5"/>
-    </svg>
-  </div>
-  <div class="floating-icon float6 size-medium color-lavender" style="top:82%; left:35%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="20" y="11" width="8" height="20" rx="4" ry="8"/>
-      <circle cx="24" cy="39" r="6"/>
-    </svg>
-  </div>
-  <div class="floating-icon float7 size-small color-pink" style="top:47%; left:60%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="14" y1="34" x2="34" y2="14"/>
-      <rect x="17" y="7" width="14" height="7" rx="1.6" ry="1.6"/>
-      <line x1="22" y1="7" x2="22" y2="29"/>
-    </svg>
-  </div>
-  <div class="floating-icon float8 size-medium color-purple" style="top:36%; left:33%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="24" y1="10" x2="24" y2="38"/>
-      <line x1="10" y1="24" x2="38" y2="24"/>
-    </svg>
-  </div>
-  <div class="floating-icon float9 size-large color-cyan" style="top:80%; left:55%;">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M24 42s-12-7.36-12-18a8 8 0 0 1 16 0 8 8 0 0 1 16 0c0 10.64-12 18-12 18z"/>
-      <polyline points="16 29 22 24 26 28 32 21"/>
-    </svg>
-  </div>
-
-  <!-- Header/Navbar -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container d-flex align-items-center">
-      <a class="navbar-brand text-white fw-bold" href="/">🏠 MedPredict AI</a>
-      <div class="ms-auto">
-        <!-- Example session logic for demo -->
-        <span class="me-3 text-white">👋 Welcome, User</span>
-        <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
-        <!-- If not logged in, use below instead: -->
-        <!-- <a href="/login" class="btn btn-sm btn-light">Login</a> -->
+      <a class="navbar-brand fw-bold" href="/">MedPredict AI</a>
+      <div class="ms-auto d-flex align-items-center gap-3">
+        {% if session['user'] %}
+          <span class="me-2 text-dark">Welcome, {{ session['user'] }}</span>
+          <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
+        {% else %}
+          <a href="/login" class="btn btn-sm btn-light">Login</a>
+          <a href="/register" class="btn btn-sm btn-light">Register</a>
+        {% endif %}
       </div>
     </div>
   </nav>
 
   <!-- About Section -->
   <div class="container text-center">
-    <h1 class="mb-4 fw-bold">About the Project</h1>
+    <h1>About the Project</h1>
     <div class="divider"></div>
     <p class="lead">
-      The <strong>AI Disease Prediction System</strong> is a web-based platform that allows users
-      to input their symptoms and receive real-time predictions of possible diseases using Machine Learning.
-      This project aims to promote early diagnosis, awareness, and accessible healthcare through AI technology.
+      The <strong>AI Disease Prediction System</strong> is a web-based platform designed to assist users in early diagnosis through AI-driven symptom analysis. It offers accurate, real-time predictions and a secure, user-friendly interface built for accessibility and awareness.
     </p>
+
     <hr />
 
-
-    <!-- Features Section -->
-    <h3 class="mt-5 fw-semibold">🔍 Key Features</h3>
-    <div class="row mt-4">
-      <div class="col-md-6 col-lg-3 mb-3">
-        <div class="card p-4 position-relative">
-          <span class="overlay-svg">
-            <svg width="100" height="100"><circle cx="50" cy="50" r="48" fill="#5d4037" fill-opacity="0.07"/></svg>
-          </span>
+    <h3 class="mb-4 text-center">Key Features</h3>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="card">
           <div class="icon">🤖</div>
           <h5>AI Predictions</h5>
-          <p>Symptom-based prediction using trained ML model.</p>
+          <p>Accurate symptom-based predictions using trained ML models.</p>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3 mb-3">
-        <div class="card p-4 position-relative">
-          <span class="overlay-svg">
-            <svg width="80" height="80"><circle cx="40" cy="40" r="38" fill="#5d4037" fill-opacity="0.06"/></svg>
-          </span>
+      <div class="col-md-3">
+        <div class="card">
           <div class="icon">🔐</div>
           <h5>Secure Login</h5>
-          <p>User authentication &amp; session management for safety.</p>
+          <p>User sessions protected with authentication and encryption.</p>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3 mb-3">
-        <div class="card p-4 position-relative">
-          <span class="overlay-svg">
-            <svg width="90" height="90"><circle cx="45" cy="45" r="43" fill="#5d4037" fill-opacity="0.05"/></svg>
-          </span>
+      <div class="col-md-3">
+        <div class="card">
           <div class="icon">🎨</div>
           <h5>Modern UI</h5>
-          <p>Bootstrap-styled responsive interface for all devices.</p>
+          <p>Clean, responsive design optimized for all devices.</p>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3 mb-3">
-        <div class="card p-4 position-relative">
-          <span class="overlay-svg">
-            <svg width="85" height="85"><circle cx="42" cy="42" r="40" fill="#5d4037" fill-opacity="0.05"/></svg>
-          </span>
+      <div class="col-md-3">
+        <div class="card">
           <div class="icon">🚀</div>
           <h5>Future Ready</h5>
-          <p>Expandable for reports, chatbot, and doctor suggestions.</p>
+          <p>Expandable for chatbots, reports, and doctor recommendations.</p>
         </div>
       </div>
     </div>
 
-
     <hr />
 
-
-    <!-- Team Section -->
-    <h3 class="mt-5 fw-semibold">👥 Team Members</h3>
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <div class="card p-4 mb-3 text-center position-relative">
-          <h5 class="fw-bold">Dilip Choudhary</h5>
-          <p>Backend &amp; Machine Learning Developer</p>
+    <h3 class="mb-4 text-center">Team Members</h3>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <h5>Dilip Choudhary</h5>
+          <p>Backend & Machine Learning Developer</p>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card p-4 mb-3 text-center position-relative">
-          <h5 class="fw-bold">Lalit Yelane</h5>
-          <p>Frontend Developer &amp; Integration Specialist</p>
+      <div class="col-md-4">
+        <div class="card">
+          <h5>Lalit Yelane</h5>
+          <p>Frontend Developer & Integration Engineer</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MedPredict AI | Designed with ❤️ for better healthcare</p>
+  </footer>
 
-  <!-- Vanilla-tilt script for interactive 3D card tilt effect -->
-  <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
-  <script>
-    document.querySelectorAll('.card').forEach(card => {
-      VanillaTilt.init(card, {
-        max: 12,
-        speed: 400,
-        glare: true,
-        "max-glare": 0.15,
-        scale: 1.03
-      });
-    });
-  </script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

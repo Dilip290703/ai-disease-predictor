@@ -192,6 +192,23 @@ def admin_panel():
 
     return render_template("admin.html", users=users, predictions=predictions)
 
+@app.route('/remedies/<disease>')
+def remedies_page(disease):
+    disease_key = disease.strip().lower()
+    info = DISEASE_INFO.get(disease_key, {
+        "doctor": "General Physician",
+        "remedies": ["No data available"],
+        "precautions": ["No data available"]
+    })
+
+    return render_template(
+        "remedies.html",
+        disease=disease,
+        remedies=info.get("remedies", []),
+        precautions=info.get("precautions", [])
+    )
+
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)

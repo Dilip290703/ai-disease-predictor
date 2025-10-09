@@ -1,0 +1,178 @@
+<!-- Chatbot Widget -->
+<div id="chatbot-wrapper">
+  <div id="chatbot-label">Need Help?</div>
+  <div id="chatbot-icon" onclick="toggleChatbot()">
+    <div class="icon-glow">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
+        <path d="M12 3C6.48 3 2 6.97 2 11.5c0 2.28 1.17 4.35 3.09 5.87L4 22l4.02-2.17C9.16 20.59 10.55 21 12 21c5.52 0 10-3.97 10-8.5S17.52 3 12 3z"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div id="chatbot-box">
+  <div id="chatbot-header">💬 MedPredict Assistant</div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+    <input id="chatbot-input" type="text" placeholder="Ask me anything..." onkeypress="handleChat(event)">
+  </div>
+</div>
+
+<style>
+  /* ---------- Wrapper & Label ---------- */
+  #chatbot-wrapper {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    text-align: center;
+    z-index: 999;
+  }
+
+  #chatbot-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  /* ---------- Floating Icon ---------- */
+  #chatbot-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: floatIcon 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+  }
+
+  #chatbot-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(0, 188, 212, 0.8);
+  }
+
+  .icon-glow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+  }
+
+  @keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ---------- Chat Box ---------- */
+  #chatbot-box {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 340px;
+    height: 440px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  #chatbot-header {
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    padding: 12px;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  #chatbot-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 0.95rem;
+  }
+
+  #chatbot-input {
+    border: none;
+    border-top: 1px solid #ddd;
+    padding: 12px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  /* ---------- Messages ---------- */
+  .user-msg {
+    background-color: #e3f2fd;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    align-self: flex-end;
+    max-width: 80%;
+  }
+
+  .bot-msg {
+    background-color: #f5f5f5;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    align-self: flex-start;
+    max-width: 80%;
+  }
+</style>
+
+<script>
+  function toggleChatbot() {
+    const box = document.getElementById('chatbot-box');
+    box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function handleChat(e) {
+    if (e.key === 'Enter') {
+      const input = document.getElementById('chatbot-input');
+      const msg = input.value.trim();
+      if (msg) {
+        appendMessage('user', msg);
+        input.value = '';
+        // Simulated reply
+        setTimeout(() => {
+          appendMessage('bot', "🤖 Hi! I'm MedPredict Assistant. How can I help you today?");
+        }, 700);
+      }
+    }
+  }
+
+  function appendMessage(sender, text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add(sender === 'user' ? 'user-msg' : 'bot-msg');
+    msgDiv.textContent = text;
+    document.getElementById('chatbot-messages').appendChild(msgDiv);
+    msgDiv.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>

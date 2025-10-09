@@ -1,177 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login - MedPredict AI</title>
+  <meta charset="UTF-8" />
+  <title>Login – MedPredict AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Montserrat:wght@700&display=swap');
+    /* --- THEME VARIABLES --- */
+    :root {
+      --color-primary-blue: #007bff;
+      --color-secondary-cyan: #00bcd4;
+      --color-text-dark: #212529;
+      --color-text-muted: #555;
+      --color-background-light: #f8f9fa;
+      --color-background-white: #ffffff;
+      --font-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+    }
 
+    /* --- GLOBAL STYLES --- */
     body {
-      background: #f5f5dc;
-      color: #5d4037;
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      min-height: 100vh;
       margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+      font-family: var(--font-primary);
+      color: var(--color-text-dark);
       overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Back Button */
-    .btn-outline-light {
-      border-radius: 20px;
-      padding: 0.3rem 1rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      border: none;
-      background: #5d4037;
-      color: white !important;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-    .btn-outline-light:hover {
-      background-color: #8d6e63;
-      color: white !important;
-      transform: translateY(-2px);
-    }
-
-    /* Card Style */
-    .card {
-      background-color: rgba(93, 64, 55, 0.05);
-      border: none;
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1),
-                  0 1.5px 12px rgba(38, 50, 56, 0.1) inset;
-      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    .card:hover {
-      transform: translateY(-12px) scale(1.05) rotateX(7deg) rotateY(-7deg);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.2),
-                  0 1.5px 16px rgba(38, 50, 56, 0.15) inset;
-      z-index: 3;
     }
 
-    /* Circle Overlay like About page */
-    .card::before {
-      content: "";
+    /* --- BACK BUTTON --- */
+    .back-btn {
       position: absolute;
-      top: -25px; right: -25px;
-      width: 70px; height: 70px;
-      background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=80&q=80') no-repeat center/cover;
-      opacity: 0.12;
-      z-index: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(0.5px);
+      top: 20px;
+      right: 30px;
     }
 
-    h3 {
-      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    .btn-outline-dark {
+      border-color: var(--color-primary-blue);
+      color: var(--color-primary-blue);
+      border-radius: 25px;
+      padding: 0.4rem 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-dark:hover {
+      background-color: var(--color-primary-blue);
+      color: #fff !important;
+    }
+
+    /* --- CARD --- */
+    .login-card {
+      background: var(--color-background-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .login-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    /* --- HEADING --- */
+    .login-card h3 {
+      text-align: center;
       font-weight: 700;
-      letter-spacing: 0.03em;
-      color: #5d4037;
+      font-size: 1.9rem;
+      color: var(--color-primary-blue);
+      margin-bottom: 1.5rem;
     }
 
+    /* --- FORM ELEMENTS --- */
     .form-label {
-      color: #5d4037;
       font-weight: 600;
+      color: var(--color-text-dark);
     }
 
     .form-control {
-      background-color: #fcfcfd;
-      color: #5d4037;
-      border-radius: 0.7rem;
-      border: 1px solid #a1887f;
+      background-color: #fdfdfd;
+      border: 1.5px solid #cfd8dc;
+      border-radius: 10px;
+      color: var(--color-text-dark);
+      padding: 0.75rem 1rem;
       font-size: 1rem;
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: all 0.25s ease;
     }
+
     .form-control:focus {
-      border-color: #5d4037;
-      box-shadow: 0 0 0 2px rgba(93, 64, 55, 0.13);
-      background-color: #f8f9fa;
-      color: #5d4037;
+      border-color: var(--color-primary-blue);
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      outline: none;
     }
+
     .form-control::placeholder {
-      color: #a1887f;
-      opacity: 0.8;
+      color: var(--color-text-muted);
     }
 
-    .btn-light.text-dark {
-      border-radius: 20px;
-      background: #5d4037;
-      color: #fff !important;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+    /* --- BUTTON --- */
+    .btn-primary {
+      background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-cyan));
       border: none;
-      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.7rem;
+      transition: all 0.3s ease;
     }
-    .btn-light.text-dark:hover {
-      background: #8d6e63;
-      color: #fff !important;
-      transform: translateY(-2px);
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #0069d9, #00acc1);
+      box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
     }
 
-    .container {
-      padding-top: 30px;
-      padding-bottom: 30px;
-      position: relative;
-      z-index: 2;
+    /* --- FOOTNOTE --- */
+    .footnote {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Back to Home Button -->
-  <div class="text-end mt-3 me-4">
-    <a href="/" class="btn btn-sm btn-outline-light">← Back to Home</a>
+  <!-- Back Button -->
+  <div class="back-btn">
+    <a href="/" class="btn btn-sm btn-outline-dark">← Back to Home</a>
   </div>
-   <path d="M100 160
-           C60 130 20 90 40 55
-           C55 30 85 30 100 55
-           C115 30 145 30 160 55
-           C180 90 140 130 100 160Z"
-        fill="url(#heartGrad)"/>
-
 
   <!-- Login Card -->
-  <div class="container mt-5">
-    <div class="card p-4" style="max-width: 500px; margin: auto;">
-      <h3 class="text-center mb-4">Login to Your Account</h3>
-      <form method="POST" action="/login">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required />
-        </div>
-        <div class="d-grid">
-          <button type="submit" class="btn btn-light text-dark">Login</button>
-        </div>
-      </form>
-    </div>
+  <div class="login-card">
+    <h3>Login to Your Account</h3>
+    <form method="POST" action="/login">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required />
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
   </div>
 
-  <!-- Vanilla Tilt for card hover -->
-  <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
-  <script>
-    document.querySelectorAll('.card').forEach(card => {
-      VanillaTilt.init(card, {
-        max: 12,
-        speed: 400,
-        glare: true,
-        "max-glare": 0.15,
-        scale: 1.03
-      });
-    });
-  </script>
+  <p class="footnote">© 2025 MedPredict AI. All Rights Reserved.</p>
+{% include 'chatbot.html' %}
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
