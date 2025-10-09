@@ -191,6 +191,63 @@ def admin_panel():
 
     return render_template("admin.html", users=users, predictions=predictions)
 
+
+
+@app.route('/admin/user/edit/<int:user_id>', methods=['GET', 'POST'])
+def edit_user(user_id):
+    if not is_admin():
+        flash("Access denied.")
+        return redirect(url_for('admin_panel'))
+    conn = get_db_connection()
+    cur = conn.cursor()
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        role = request.form['role']
+        cur.execute("UPDATE users SET name=%s, email=%s, role=%s WHERE id=%s", (name, email, role, user_id))
+        conn.commit()
+        cur.close()
+        conn.close()
+        flash("User updated.")
+        return redirect(url_for('admin_panel'))
+    cur.execute("SELECT id, name, email, role FROM users WHERE id=%s", (user_id,))
+    user = cur.fetchone()
+    cur.close()
+    conn.close()
+    return render_template('edit_user.html', user=user)
+
+@app.route('/admin/user/delete/<int:user_id>', methods=['POST'])
+def delete_user(user_id):
+    if not is_admin():
+        flash("Access denied.")
+        return redirect(url_for('admin_panel'))
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM users WHERE id=%s", (user_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    flash("User deleted.")
+    return redirect(url_for('admin_panel'))
+
+
+
+@app.route('/admin/prediction/delete/<int:prediction_id>', methods=['POST'])
+def delete_prediction(prediction_id):
+    if not is_admin():
+        flash("Access denied.")
+        return redirect(url_for('admin_panel'))
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM predictions WHERE id=%s", (prediction_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    flash("Prediction deleted.")
+    return redirect(url_for('admin_panel'))
+
+
+
 @app.route('/remedies/<disease>')
 def remedies_page(disease):
     disease_key = disease.strip().lower()
