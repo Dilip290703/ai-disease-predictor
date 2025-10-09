@@ -12,13 +12,67 @@
     }
     .container { margin-top: 60px; max-width: 800px; }
     .result-box {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 30px;
+      background: rgba(255, 255, 255, 0.13);
+      border-radius: 16px;
+      padding: 36px 30px 30px 30px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
     }
-    h2 { font-weight: bold; }
+    h2, h4 {
+      font-weight: bold;
+      color: #fff;
+    }
+    .text-warning {
+      color: #ffd600 !important;
+    }
+    .btn-primary {
+      background: #fff;
+      color: #6a1b9a;
+      border: none;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #ffd600;
+      color: #6a1b9a;
+    }
+    .btn-light, .btn-outline-light {
+      color: #6a1b9a !important;
+      background: #fff !important;
+      border: none;
+      font-weight: 600;
+    }
+    .btn-outline-light {
+      border: 2px solid #fff !important;
+      background: transparent !important;
+      color: #fff !important;
+    }
+    .btn-outline-light:hover {
+      background: #fff !important;
+      color: #6a1b9a !important;
+    }
     .btn-report { margin-top: 20px; }
-    ul { text-align: left; }
+    ul {
+      text-align: left;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 18px 24px;
+      color: #fff;
+      margin: 18px auto 0 auto;
+      max-width: 500px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .mt-4 { margin-top: 2rem !important; }
+    .mt-3 { margin-top: 1rem !important; }
+    .mb-3 { margin-bottom: 1rem !important; }
+    .text-center { color: #fff; }
+    @media (max-width: 600px) {
+      .container { padding: 0 5px; }
+      .result-box { padding: 16px 5px; }
+      h2 { font-size: 1.3rem; }
+      h4 { font-size: 1.1rem; }
+      ul { padding: 10px 10px; }
+    }
   </style>
 </head>
 <body>
@@ -41,7 +95,6 @@
             👨‍⚕️ See Doctor Recommendation
           </a>
         </div>
-
 
         {% if report_link %}
           <a href="{{ report_link }}" class="btn btn-light btn-report">📄 Download PDF Report</a>
