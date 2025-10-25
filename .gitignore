@@ -27,7 +27,7 @@ build/
 
 # PDF reports and model files
 static/reports/
-
+__pycache__/
 *.pdf
 
 Final_Augmented_dataset_Diseases_and_Symptoms.csv

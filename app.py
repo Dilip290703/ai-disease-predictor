@@ -3,9 +3,11 @@ import mysql.connector
 import json
 import pickle
 import numpy as np
+import os
 from generate_pdf import create_report
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from auth import auth_bp, bcrypt
+from flask import send_from_directory
 
 # ===== DB connection =====
 def get_db_connection():
@@ -146,7 +148,7 @@ def predict():
         'result.html',
         prediction=enriched_prediction,
         user=session.get('name') or session.get('user'),
-        report_link='/' + report_path if report_path else None
+        report_link = f"/reports/{os.path.basename(report_path)}" if report_path else None
     )
 
 @app.route('/about')
@@ -272,6 +274,11 @@ def logout():
     session.pop('role', None)
     flash('Logged out successfully.')
     return redirect(url_for('auth.login'))
+
+
+@app.route('/reports/<path:filename>')
+def serve_report(filename):
+    return send_from_directory('reports', filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
