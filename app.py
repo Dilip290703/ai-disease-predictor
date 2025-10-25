@@ -8,6 +8,8 @@ from generate_pdf import create_report
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from auth import auth_bp, bcrypt
 from flask import send_from_directory
+from flask_mail import Mail, Message
+
 
 # ===== DB connection =====
 def get_db_connection():
@@ -23,6 +25,17 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'   # change to a strong random key
 bcrypt.init_app(app)
 app.register_blueprint(auth_bp)
+
+# ===== Flask-Mail setup =====
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'dc277593@gmail.com'      
+app.config['MAIL_PASSWORD'] = 'qhaamjrerueghfif'        
+app.config['MAIL_DEFAULT_SENDER'] = ('MedPredict AI', 'your_email@gmail.com')
+
+mail = Mail(app)
+
 
 # ===== Load model artifacts =====
 with open('disease_model.pkl', 'rb') as f:
@@ -150,6 +163,54 @@ def predict():
         user=session.get('name') or session.get('user'),
         report_link = f"/reports/{os.path.basename(report_path)}" if report_path else None
     )
+
+@app.route('/email_report', methods=['POST'])
+def email_report():
+    if 'user' not in session:
+        flash('Please log in to use this feature.')
+        return redirect(url_for('auth.login'))
+
+    report_path = request.form.get('report_path', '')
+
+    # Validate the report path
+    if not report_path or not os.path.exists(report_path.lstrip('/')):
+        flash("Report not found or invalid path.")
+        return redirect(url_for('home'))
+
+    try:
+        msg = Message(
+            subject="Your MedPredict AI Health Report",
+            recipients=[session.get('user')],
+            body=f"""
+Hello {session.get('name') or 'User'},
+
+Your personalized MedPredict AI health report is attached to this email.
+
+Please review the document for insights and recommendations.
+
+Stay healthy!
+— MedPredict AI Team
+"""
+        )
+
+        full_path = report_path.lstrip('/')
+        with app.open_resource(full_path) as fp:
+            msg.attach(
+                filename=os.path.basename(full_path),
+                content_type="application/pdf",
+                data=fp.read()
+            )
+
+        mail.send(msg)
+        flash("📩 Report has been emailed successfully!")
+
+    except Exception as e:
+        print("❌ Email send error:", e)
+        flash("Error sending email. Please try again later.")
+
+    return redirect(url_for('index'))
+
+
 
 @app.route('/about')
 def about():

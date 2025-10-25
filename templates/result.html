@@ -100,6 +100,17 @@
           <a href="{{ report_link }}" class="btn btn-light btn-report">📄 Download PDF Report</a>
         {% endif %}
         <br>
+        
+<div class="text-center mt-4">
+  <form method="POST" action="/email_report">
+    <input type="hidden" name="report_path" value="{{ report_link }}">
+    <input type="hidden" name="disease" value="{{ prediction }}">
+    <input type="hidden" name="confidence" value="{{ confidence }}">
+    <button type="submit" class="btn btn-warning">
+      📧 Email me my report
+    </button>
+</div>
+
         <a href="/predict" class="btn btn-outline-light mt-3">🔙 New Prediction</a>
       {% endif %}
     </div>
