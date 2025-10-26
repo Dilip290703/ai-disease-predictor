@@ -1,0 +1,108 @@
+
+    /* --- THEME VARIABLES --- */
+    :root {
+      --color-primary-blue: #1976d2;
+      --color-secondary-cyan: #00bcd4;
+      --color-text-dark: #212529;
+      --color-text-muted: #555;
+      --color-background-light: #f0f7ff;
+      --color-background-white: #ffffff;
+      --font-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.15);
+      --border-radius: 14px;
+    }
+
+    /* --- GLOBAL --- */
+    body {
+      background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+      font-family: var(--font-primary);
+      color: var(--color-text-dark);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 0;
+    }
+
+    /* --- CARD --- */
+    .card {
+      background: var(--color-background-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      padding: 2rem 2.5rem;
+      width: 100%;
+      max-width: 420px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+
+    h3 {
+      color: var(--color-primary-blue);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: 500;
+      color: var(--color-primary-blue);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      background: #f8faff;
+      border: 1px solid #cfd8dc;
+      border-radius: 10px;
+      padding: 0.6rem 1rem;
+      color: var(--color-text-dark);
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+      border-color: var(--color-secondary-cyan);
+      box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
+    }
+
+    /* --- BUTTON --- */
+    .btn-primary {
+      background: var(--color-primary-blue);
+      border: none;
+      border-radius: 25px;
+      color: #fff !important;
+      font-weight: 600;
+      padding: 0.7rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover {
+      background: #0d47a1;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* --- ALERT --- */
+    .alert-warning {
+      background: #e3f2fd;
+      color: var(--color-primary-blue);
+      border: 1px solid rgba(25, 118, 210, 0.2);
+      border-radius: 10px;
+      padding: 0.75rem;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }

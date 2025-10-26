@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #6a11cb 0%, #8e2de2 100%);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+}
+
+.container {
+  margin-top: 60px;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+h2, h4 {
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+h4 {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-lg {
+  padding: 10px 24px;
+}
+
+.btn-light {
+  background: #fff;
+  color: #6a11cb !important;
+  border: none;
+}
+
+.btn-light:hover {
+  background: #e1bee7;
+  transform: translateY(-2px);
+}
+
+.btn-warning {
+  background: linear-gradient(90deg, #ffb300, #ff9800);
+  border: none;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(90deg, #ffca28, #ffa726);
+  transform: scale(1.05);
+}
+
+.btn-danger {
+  background: linear-gradient(90deg, #e53935, #d32f2f);
+  border: none;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(90deg, #ef5350, #e53935);
+  transform: scale(1.05);
+}
+
+.table-container {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 25px;
+  margin: 40px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.table-container:hover {
+  transform: translateY(-3px);
+}
+
+.table {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background: linear-gradient(90deg, #6a1b9a, #8e24aa);
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+form {
+  display: inline;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6a1b9a;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 25px 15px;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  .table-container {
+    padding: 15px;
+  }
+  .btn {
+    font-size: 0.85rem;
+  }
+}

@@ -2,75 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>About – AI Disease Predictor</title>
+  <title>About – MedPredict AI</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    body {
-      background: linear-gradient(to right, #8e24aa, #6a1b9a);
-      color: white;
-    }
-    .container {
-      padding: 60px 20px;
-    }
-    .card {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: none;
-    }
-    .card h5 {
-      color: white;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/about.css" />
 </head>
-<body>
-     <!-- Reusable Header -->
-<nav class="navbar navbar-expand-lg" style="background-color: rgba(255,255,255,0.1);">
-  <div class="container">
-    <a class="navbar-brand text-white" href="/">🏠 MedPredict AI</a>
-    <div class="ms-auto">
-      {% if session['user'] %}
-        <span class="me-3 text-white">Welcome, {{ session['user'] }}</span>
-        <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
-      {% else %}
-        <a href="/login" class="btn btn-sm btn-light">Login</a>
-      {% endif %}
-    </div>
-  </div>
-</nav>
 
-  <div class="container">
-    <h1 class="mb-4 text-center">About the Project</h1>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand fw-bold" href="/">MedPredict AI</a>
+      <div class="ms-auto d-flex align-items-center gap-3">
+        {% if session['user'] %}
+          <span class="me-2 text-dark">Welcome , {{ session['name'] }}</span>
+          <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
+        {% else %}
+          <a href="/login" class="btn btn-sm btn-light">Login</a>
+          <a href="/register" class="btn btn-sm btn-light">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <div class="container text-center">
+    <h1>About the Project</h1>
+    <div class="divider"></div>
     <p class="lead">
-      The AI Disease Prediction System is a web-based tool that allows users to select symptoms and get real-time predictions of possible diseases using Machine Learning. It is designed to assist users in early diagnosis and awareness, using a secure, simple interface.
+      The <strong>AI Disease Prediction System</strong> is a web-based platform designed to assist users in early diagnosis through AI-driven symptom analysis. It offers accurate, real-time predictions and a secure, user-friendly interface built for accessibility and awareness.
     </p>
 
-    <hr class="bg-white" />
+    <hr />
 
-    <h3 class="mt-4">🔍 Key Features</h3>
-    <ul>
-      <li>Symptom-based prediction using trained ML model</li>
-      <li>Secure user login and session management</li>
-      <li>User-friendly interface with Bootstrap styling</li>
-      <li>Expandable for future features like report download, chatbot, and specialist recommendation</li>
-    </ul>
-
-    <hr class="bg-white" />
-
-    <h3 class="mt-4">👥 Team Members</h3>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card p-3 mb-3">
-          <h5>Dilip Choudhary</h5>
-          <p>Backend & ML Developer</p>
+    <h3 class="mb-4 text-center">Key Features</h3>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="icon">🤖</div>
+          <h5>AI Predictions</h5>
+          <p>Accurate symptom-based predictions using trained ML models.</p>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card p-3 mb-3">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="icon">🔐</div>
+          <h5>Secure Login</h5>
+          <p>User sessions protected with authentication and encryption.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="icon">🎨</div>
+          <h5>Modern UI</h5>
+          <p>Clean, responsive design optimized for all devices.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="icon">🚀</div>
+          <h5>Future Ready</h5>
+          <p>Expandable for chatbots, reports, and doctor recommendations.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h3 class="mb-4 text-center">Team Members</h3>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <h5>Dilip Choudhary</h5>
+          <p>Backend & Machine Learning Developer</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
           <h5>Lalit Yelane</h5>
-          <p>Frontend & Integration</p>
+          <p>Frontend Developer & Integration Engineer</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MedPredict AI | Designed with ❤️ for better healthcare</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

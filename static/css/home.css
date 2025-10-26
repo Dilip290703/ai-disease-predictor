@@ -1,0 +1,165 @@
+  
+    /* --- THEME VARIABLES --- */
+    :root {
+      --color-primary-blue: #007bff;
+      --color-secondary-cyan: #00bcd4;
+      --color-text-dark: #212529;
+      --color-text-light: #555;
+      --color-background-white: #ffffff;
+      --color-background-light: #f8f9fa;
+      --font-family-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --border-radius-card: 12px;
+    }
+
+    body {
+      font-family: var(--font-family-primary);
+      color: var(--color-text-dark);
+      background-color: var(--color-background-white);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* --- NAVBAR --- */
+    .navbar {
+      background-color: var(--color-background-white);
+      box-shadow: var(--shadow-medium);
+      padding: 1rem 2rem;
+    }
+
+    .navbar-brand {
+      color: var(--color-primary-blue) !important;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link {
+      color: var(--color-text-dark) !important;
+      font-weight: 500;
+      margin: 0 10px;
+    }
+
+    .nav-link:hover {
+      color: var(--color-primary-blue) !important;
+    }
+
+    /* --- BUTTONS --- */
+    .btn-light, .btn-outline-dark, .btn-primary {
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary-blue);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-outline-dark:hover {
+      background-color: var(--color-text-dark);
+      color: #fff !important;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+      background-image: url('https://i.imgur.com/your-doctors-image-placeholder.jpg');
+      background-size: cover;
+      background-position: center top;
+      position: relative;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--color-background-white);
+      margin-bottom: 60px;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 123, 255, 0.8),
+        rgba(0, 188, 212, 0.6)
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--color-background-white);
+      margin-bottom: 30px;
+    }
+
+    /* --- FEATURES SECTION --- */
+    .features {
+      padding: 80px 20px;
+      background-color: var(--color-background-light);
+    }
+
+    .features h2 {
+      text-align: center;
+      color: var(--color-text-dark);
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+    }
+
+    .feature-card {
+      background-color: var(--color-background-white);
+      border-radius: var(--border-radius-card);
+      box-shadow: var(--shadow-medium);
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card h5 {
+      color: var(--color-primary-blue);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--color-text-light);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--color-background-light);
+      text-align: center;
+      padding: 20px;
+      color: var(--color-text-light);
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+ 

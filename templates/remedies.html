@@ -2,84 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home Remedies & Precautions - MedPredict AI</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #5e35b1, #8e24aa);
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      min-height: 100vh;
-    }
-    .container { margin-top: 60px; max-width: 900px; }
-    .info-box {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
-      padding: 35px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .info-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
-    }
-    h2, h4 { font-weight: bold; }
-    ul {
-      text-align: left;
-      list-style-type: none;
-      padding-left: 0;
-    }
-    li::before {
-      content: "•";
-      color: #ffd54f;
-      margin-right: 8px;
-    }
-    .section-card {
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 20px;
-      transition: background 0.3s;
-    }
-    .section-card:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    .btn-custom {
-      border-radius: 30px;
-      font-weight: bold;
-    }
-  </style>
+  <title>Home Remedies & Precautions – MedPredict AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/remedies.css" />
+
 </head>
+
 <body>
-  <div class="container">
-    <div class="info-box text-center">
-      <h2>🍵 Remedies & Precautions for <span class="text-warning">{{ disease }}</span></h2>
+  <div class="info-box">
+    <h2> Home Remedies & Precautions for <span class="text-warning">{{ disease }}</span></h2>
 
-      <div class="section-card">
-        <h4><i class="fa-solid fa-leaf"></i> Home Remedies</h4>
-        <ul>
-          {% for remedy in remedies %}
-            <li>{{ remedy }}</li>
-          {% endfor %}
-        </ul>
-      </div>
+    <!-- Remedies Card -->
+    <div class="card" onclick="toggleCard(this)">
+      <h4>Home Remedies</h4>
+      <ul>
+        {% for remedy in remedies %}
+          <li><b>{{ remedy }}</b></li>
+        {% endfor %}
+      </ul>
+    </div>
 
-      <div class="section-card">
-        <h4><i class="fa-solid fa-triangle-exclamation"></i> Precautions</h4>
-        <ul>
-          {% for precaution in precautions %}
-            <li>{{ precaution }}</li>
-          {% endfor %}
-        </ul>
-      </div>
+    <!-- Precautions Card -->
+    <div class="card" onclick="toggleCard(this)">
+      <h4>Precautions</h4>
+      <ul>
+        {% for precaution in precautions %}
+          <li><b>{{ precaution }}</b></li>
+        {% endfor %}
+      </ul>
+    </div>
 
-      <div class="mt-4">
-        <a href="/doctor/{{ disease }}" class="btn btn-light btn-custom me-2">👨‍⚕️ Doctor Info</a>
-        <a href="/predict" class="btn btn-warning btn-custom me-2">🔙 New Prediction</a>
-        <a href="/" class="btn btn-outline-light btn-custom">🏠 Home</a>
-      </div>
+    <!-- Buttons -->
+    <div class="mt-4">
+      <a href="/predict" class="btn btn-light mt-2 me-2"> New Prediction</a>
+      <a href="/" class="btn btn-outline-light mt-2"> Home</a>
     </div>
   </div>
+
+  <p class="footnote">© 2025 MedPredict AI. All Rights Reserved.</p>
+
+  <script>
+    function toggleCard(card) {
+      card.classList.toggle('expanded');
+    }
+  </script>
+
 </body>
 </html>

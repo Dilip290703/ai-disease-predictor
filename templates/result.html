@@ -2,89 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Prediction Result - MedPredict AI</title>
+  <title>Prediction Result – MedPredict AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap + External CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(to right, #6a1b9a, #9c27b0);
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .container { margin-top: 60px; max-width: 800px; }
-    .result-box {
-      background: rgba(255, 255, 255, 0.13);
-      border-radius: 16px;
-      padding: 36px 30px 30px 30px;
-      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
-    }
-    h2, h4 {
-      font-weight: bold;
-      color: #fff;
-    }
-    .text-warning {
-      color: #ffd600 !important;
-    }
-    .btn-primary {
-      background: #fff;
-      color: #6a1b9a;
-      border: none;
-      font-weight: 600;
-    }
-    .btn-primary:hover {
-      background: #ffd600;
-      color: #6a1b9a;
-    }
-    .btn-light, .btn-outline-light {
-      color: #6a1b9a !important;
-      background: #fff !important;
-      border: none;
-      font-weight: 600;
-    }
-    .btn-outline-light {
-      border: 2px solid #fff !important;
-      background: transparent !important;
-      color: #fff !important;
-    }
-    .btn-outline-light:hover {
-      background: #fff !important;
-      color: #6a1b9a !important;
-    }
-    .btn-report { margin-top: 20px; }
-    ul {
-      text-align: left;
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: 18px 24px;
-      color: #fff;
-      margin: 18px auto 0 auto;
-      max-width: 500px;
-    }
-    li {
-      margin-bottom: 8px;
-    }
-    .mt-4 { margin-top: 2rem !important; }
-    .mt-3 { margin-top: 1rem !important; }
-    .mb-3 { margin-bottom: 1rem !important; }
-    .text-center { color: #fff; }
-    @media (max-width: 600px) {
-      .container { padding: 0 5px; }
-      .result-box { padding: 16px 5px; }
-      h2 { font-size: 1.3rem; }
-      h4 { font-size: 1.1rem; }
-      ul { padding: 10px 10px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/prediction_result.css') }}">
 </head>
+
 <body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="/"> MedPredict AI</a>
+      <div class="ms-auto d-flex align-items-center gap-3">
+        {% if session['user'] %}
+          <span class="me-2 text-dark">Welcome, {{ session['name'] or session['user'] }}</span>
+          <a href="/logout" class="btn btn-sm btn-outline-dark">Logout</a>
+        {% else %}
+          <a href="/login" class="btn btn-sm btn-light">Login</a>
+          <a href="/register" class="btn btn-sm btn-outline-dark">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Result Section -->
   <div class="container">
     <div class="result-box text-center">
       {% if error %}
-        <h3 class="text-warning">{{ error }}</h3>
+        <h3 class="text-danger">{{ error }}</h3>
         <a href="/predict" class="btn btn-light mt-3">🔙 Try Again</a>
+
       {% elif prediction %}
-        <h2>🩺 Predicted Disease: <span class="text-warning">{{ prediction.disease }}</span></h2>
+        <h2>🩺 Predicted Disease:</h2>
+        <h3 class="text-highlight">{{ prediction.disease }}</h3>
+
         {% if prediction.confidence %}
-          <p>Confidence: {{ '%.2f' % (prediction.confidence * 100) }}%</p>
+          <p><strong>Confidence:</strong> {{ '%.2f' % (prediction.confidence * 100) }}%</p>
         {% endif %}
 
         <h4 class="mt-4">Recommended Doctor:</h4>
@@ -97,23 +53,26 @@
         </div>
 
         {% if report_link %}
-          <a href="{{ report_link }}" class="btn btn-light btn-report">📄 Download PDF Report</a>
+          <a href="{{ report_link }}" class="btn btn-light mt-3">📄 Download PDF Report</a>
         {% endif %}
-        <br>
-        
-<div class="text-center mt-4">
-  <form method="POST" action="/email_report">
-    <input type="hidden" name="report_path" value="{{ report_link }}">
-    <input type="hidden" name="disease" value="{{ prediction }}">
-    <input type="hidden" name="confidence" value="{{ confidence }}">
-    <button type="submit" class="btn btn-warning">
-      📧 Email me my report
-    </button>
-</div>
 
-        <a href="/predict" class="btn btn-outline-light mt-3">🔙 New Prediction</a>
+        <div class="text-center mt-4">
+          <form method="POST" action="/email_report">
+            <input type="hidden" name="report_path" value="{{ report_link }}">
+            <input type="hidden" name="disease" value="{{ prediction.disease }}">
+            <input type="hidden" name="confidence" value="{{ prediction.confidence }}">
+            <button type="submit" class="btn btn-warning">📧 Email me my report</button>
+          </form>
+        </div>
+
+        <a href="/predict" class="btn btn-outline-dark mt-3">🔙 New Prediction</a>
       {% endif %}
     </div>
   </div>
+
+  <footer>
+    © 2025 MedPredict AI. All Rights Reserved.
+  </footer>
+ 
 </body>
 </html>

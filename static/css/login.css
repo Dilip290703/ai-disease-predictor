@@ -1,0 +1,124 @@
+  
+    /* --- THEME VARIABLES --- */
+    :root {
+      --color-primary-blue: #007bff;
+      --color-secondary-cyan: #00bcd4;
+      --color-text-dark: #212529;
+      --color-text-muted: #555;
+      --color-background-light: #f8f9fa;
+      --color-background-white: #ffffff;
+      --font-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+    }
+
+    /* --- GLOBAL STYLES --- */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+      font-family: var(--font-primary);
+      color: var(--color-text-dark);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* --- BACK BUTTON --- */
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
+    .btn-outline-dark {
+      border-color: var(--color-primary-blue);
+      color: var(--color-primary-blue);
+      border-radius: 25px;
+      padding: 0.4rem 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-dark:hover {
+      background-color: var(--color-primary-blue);
+      color: #fff !important;
+    }
+
+    /* --- CARD --- */
+    .login-card {
+      background: var(--color-background-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .login-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    /* --- HEADING --- */
+    .login-card h3 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.9rem;
+      color: var(--color-primary-blue);
+      margin-bottom: 1.5rem;
+    }
+
+    /* --- FORM ELEMENTS --- */
+    .form-label {
+      font-weight: 600;
+      color: var(--color-text-dark);
+    }
+
+    .form-control {
+      background-color: #fdfdfd;
+      border: 1.5px solid #cfd8dc;
+      border-radius: 10px;
+      color: var(--color-text-dark);
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--color-primary-blue);
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    /* --- BUTTON --- */
+    .btn-primary {
+      background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-cyan));
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.7rem;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #0069d9, #00acc1);
+      box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+    }
+
+    /* --- FOOTNOTE --- */
+    .footnote {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+ 
