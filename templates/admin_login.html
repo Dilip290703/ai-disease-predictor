@@ -1,68 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Admin Login – MedPredict AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Bootstrap + Google Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
     /* --- THEME VARIABLES --- */
     :root {
-      --color-primary-blue: #1976d2;
+      --color-primary-blue: #007bff;
       --color-secondary-cyan: #00bcd4;
-      --color-text-dark: #212529;
-      --color-text-muted: #555;
-      --color-background-light: #f0f7ff;
+      --color-text-dark: #2c3e50; /* Darker, richer text */
+      --color-text-light: #555;
       --color-background-white: #ffffff;
-      --font-primary: 'Roboto', sans-serif;
-      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
-      --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.15);
-      --border-radius: 14px;
+      --color-background-page: #d6e8f6; /* Light blue from image */
+      --font-family-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.08);
+      --border-radius-card: 12px;
     }
 
-    /* --- GLOBAL --- */
+    /* --- BASE --- */
     body {
-      background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
-      font-family: var(--font-primary);
+      font-family: var(--font-family-primary);
+      background-color: var(--color-background-page);
       color: var(--color-text-dark);
-      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px 0;
+      flex-direction: column;
+      position: relative; /* Needed for absolute positioning of stethoscope */
+      overflow-x: hidden; /* Prevent horizontal scroll from image */
     }
 
-    /* --- CARD --- */
-    .card {
-      background: var(--color-background-white);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-medium);
-      padding: 2rem 2.5rem;
-      width: 100%;
-      max-width: 420px;
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-4px);
-    }
-
-    h3 {
-      color: var(--color-primary-blue);
+    h1, h3, h5 {
+      color: var(--color-text-dark);
       font-weight: 700;
-      text-align: center;
-      margin-bottom: 1.5rem;
     }
 
+    p {
+      color: var(--color-text-light);
+    }
+
+    /* --- NAVBAR --- */
+    .navbar {
+      background-color: transparent !important;
+      box-shadow: none;
+      padding: 1rem 2rem;
+      z-index: 10; /* Ensure navbar is above stethoscope */
+      position: relative;
+    }
+
+    .navbar-brand {
+      color: var(--color-text-dark) !important;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-light {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      color: #333;
+    }
+    .btn-outline-light {
+      border-color: #fff;
+      color: #fff;
+    }
+
+    /* --- Stethoscope Image Styling --- */
+    .stethoscope-image {
+      position: absolute;
+      top: 50px; /* Adjust as needed */
+      left: -100px; /* Position it partially off-screen for a subtle look */
+      width: 450px; /* Adjust size as needed */
+      max-width: 50%; /* Max width relative to viewport */
+      height: auto;
+      opacity: 0.6; /* Make it subtle */
+      transform: rotate(-15deg); /* Slight rotation for dynamic feel */
+      z-index: 0; /* Ensure it's behind content */
+      pointer-events: none; /* Make it non-interactive */
+    }
+
+    @media (max-width: 768px) {
+        .stethoscope-image {
+            width: 300px; /* Smaller on tablets/mobiles */
+            left: -150px;
+            top: 100px;
+        }
+    }
+    @media (max-width: 480px) {
+        .stethoscope-image {
+            display: none; /* Hide on very small screens if it's too intrusive */
+        }
+    }
+
+
+    /* --- STYLES FOR LOGIN PAGE --- */
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 1rem;
+      flex-grow: 1; 
+      position: relative; /* Ensure card is above stethoscope */
+      z-index: 1;
+    }
+
+    .login-card {
+      background-color: var(--color-background-white);
+      border: none;
+      border-radius: var(--border-radius-card);
+      padding: 2.5rem 2rem; 
+      box-shadow: var(--shadow-medium);
+      transition: all 0.3s ease;
+      max-width: 450px;
+      width: 100%;
+      text-align: left; 
+    }
+
+    .login-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .login-card h3 {
+      text-align: center;
+      color: var(--color-primary-blue);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+    
     label {
       font-weight: 500;
-      color: var(--color-primary-blue);
+      color: var(--color-text-dark);
       margin-bottom: 0.4rem;
     }
 
@@ -70,10 +145,8 @@
       background: #f8faff;
       border: 1px solid #cfd8dc;
       border-radius: 10px;
-      padding: 0.6rem 1rem;
-      color: var(--color-text-dark);
+      padding: 0.75rem 1rem;
       transition: all 0.3s ease;
-      font-size: 0.95rem;
     }
 
     .form-control:focus {
@@ -81,7 +154,6 @@
       box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
     }
 
-    /* --- BUTTON --- */
     .btn-primary {
       background: var(--color-primary-blue);
       border: none;
@@ -94,16 +166,14 @@
     }
 
     .btn-primary:hover {
-      background: #0d47a1;
+      background: #0056b3; /* Darker blue */
       transform: translateY(-1px);
-      box-shadow: var(--shadow-hover);
     }
-
-    /* --- ALERT --- */
+    
     .alert-warning {
-      background: #e3f2fd;
-      color: var(--color-primary-blue);
-      border: 1px solid rgba(25, 118, 210, 0.2);
+      background: #e6f7ff;
+      color: #0056b3;
+      border: 1px solid rgba(0, 123, 255, 0.3);
       border-radius: 10px;
       padding: 0.75rem;
       font-size: 0.95rem;
@@ -112,18 +182,44 @@
 
     /* --- FOOTER --- */
     footer {
+      background-color: transparent;
       text-align: center;
-      margin-top: 2rem;
-      color: var(--color-text-muted);
-      font-size: 0.9rem;
+      padding: 20px;
+      color: var(--color-text-light);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: auto; /* Push footer to bottom */
+      position: relative; /* Ensure footer is above stethoscope */
+      z-index: 1;
+    }
+
+    footer p {
+      margin: 0;
+      color: #444;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="card">
-      <h3>Admin Login</h3>
+  
+<img src="{{ url_for('static', filename='images/pngtree-stethoscope-with-blue-tubing-png-image_13072718.png') }}" alt="Stethoscope" class="stethoscope-image">
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand fw-bold" href="/">MedPredict AI</a>
+      <div class="ms-auto d-flex align-itemsM-center gap-3">
+        {% if session['user'] %}
+          <span class="me-2 text-dark">Welcome, {{ session['user'] }}</span>
+          <a href="/logout" class="btn btn-sm btn-light">Logout</a>
+        {% else %}
+          <a href="/login" class="btn btn-sm btn-light">Login</a>
+          <a href="/register" class="btn btn-sm btn-light">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <div class="login-container">
+    <div class="card login-card"> <h3>Admin Login</h3>
 
       {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -150,7 +246,9 @@
   </div>
 
   <footer>
-    © 2025 MedPredict AI. All Rights Reserved.
+    <p>© 2025 MedPredict AI. All Rights Reserved.</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

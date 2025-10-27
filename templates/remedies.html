@@ -8,25 +8,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* --- THEME VARIABLES --- */
+    /* --- THEME VARIABLES (From your new theme) --- */
     :root {
-      --color-primary-blue: #000000;
+      --color-primary-blue: #4a6685;
       --color-secondary-cyan: #00bcd4;
-      --color-text-dark: #212529;
-      --color-text-muted: #555;
-      --color-background-light: #f0f7ff;
+      --color-text-dark: #2c3e50;
+      --color-text-light: #555;
       --color-background-white: #ffffff;
-      --font-primary: 'Roboto', sans-serif;
-      --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --color-background-page: #d6e8f6; /* Light blue from image */
+      --font-family-primary: 'Roboto', sans-serif;
+      --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.08);
+      --border-radius-card: 12px;
       --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.15);
-      --border-radius: 14px;
     }
 
     /* --- GLOBAL STYLES --- */
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
       font-family: var(--font-primary);
       color: var(--color-text-dark);
       display: flex;
@@ -34,23 +33,45 @@
       align-items: center;
       flex-direction: column;
       padding: 2rem;
+
+      /* --- Stethoscope Background --- */
+      background-color: var(--color-background-page);
+      background-image: url("{{ url_for('static', filename='images/pngtree-stethoscope-with-blue-tubing-png-image_13072718.png') }}");
+      background-repeat: no-repeat;
+      background-position: left -50px top -60px;
+      background-size: 350px;
+      background-attachment: fixed;
+    }
+    
+    /* --- NAVBAR (Copied from about.html) --- */
+    .navbar {
+      background-color: transparent !important;
+      box-shadow: none;
+      padding: 1rem 2rem;
+      position: fixed; /* Fix navbar to top */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
     }
 
-    /* --- CONTAINER --- */
+    .navbar-brand {
+      color: var(--color-text-dark) !important;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* --- CONTAINER (Your info-box) --- */
     .info-box {
       background: var(--color-background-white);
-      border-radius: var(--border-radius);
+      border-radius: var(--border-radius-card); /* Use theme variable */
       box-shadow: var(--shadow-medium);
       padding: 2.5rem 2rem;
-      max-width: 850px;
+      max-width: 900px; /* Widened to fit cards */
       width: 100%;
       text-align: center;
       transition: all 0.3s ease;
-    }
-
-    .info-box:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-3px);
+      margin-top: 80px; /* Add margin to avoid navbar overlap */
     }
 
     /* --- HEADINGS --- */
@@ -62,158 +83,222 @@
     }
 
     h4 {
-      font-weight: 600;
-      color: var(--color-text-dark);
+      font-weight: 700;
+      color: var(--color-primary-blue);
       margin-bottom: 1rem;
     }
 
     .text-warning {
-      color: #ff9800 !important;
+      color: #ff9800 !important; /* Kept your orange highlight */
       font-weight: 700;
     }
 
-    /* --- CARDS --- */
-    .card {
-      background-color: var(--color-background-light);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-medium);
-      padding: 1.8rem;
-      color: var(--color-text-dark);
-      transition: all 0.3s ease;
-      margin-top: 1.5rem;
+
+    /* --- NEW FLIP CARD STYLES --- */
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 350px; /* Fixed height for flip card */
+      perspective: 1000px; /* 3D effect */
       cursor: pointer;
-      font-weight: 500;
+      margin-top: 1.5rem;
     }
 
-    .card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-4px);
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
     }
 
-    .card h4 {
-      color: var(--color-primary-blue);
-      font-weight: 700;
+    /* This class is added by JavaScript on click */
+    .flip-card-inner.flipped {
+      transform: rotateY(180deg);
     }
 
-    .card ul {
-      list-style: disc;
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+      border-radius: var(--border-radius-card);
+      /* Added border for a clear edge */
+      border: 1px solid #c0c0c0; /* Subtle grey border */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Lighter shadow */
+    }
+
+    /* Front card styling */
+    .flip-card-front {
+      background-color: var(--color-background-white);
+      color: var(--color-text-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.8rem;
+    }
+
+    /* Back card styling */
+    .flip-card-back {
+      background-color: var(--color-background-white);
+      color: var(--color-text-dark);
+      transform: rotateY(180deg);
+      padding: 1.8rem;
       text-align: left;
+      overflow-y: auto; /* Add scroll if content is too long */
+    }
+    
+    .flip-card-back ul {
+      list-style: disc;
       padding-left: 1.8rem;
-      display: none;
       font-size: 1rem;
+      color: var(--color-text-light);
+    }
+    .flip-card-back li {
+        margin-bottom: 8px;
     }
 
-    .card.expanded ul {
-      display: block;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* --- BUTTONS --- */
-    .btn-warning {
-      border-radius: 25px;
-      font-weight: 600;
-      color: #fff !important;
-      background: #8d6e63;
-      border: none;
+    /* --- BUTTONS (Updated to new theme) --- */
+    .btn-light, .btn-outline-light {
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 10px 25px;
       transition: all 0.3s ease;
-      letter-spacing: 0.02em;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .btn-warning:hover {
-      background: #5d4037;
-      color: #f9e6d9 !important;
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .btn-light,
-    .btn-outline-light {
-      border-radius: 25px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-medium);
-    }
-
-    .btn-light:hover,
-    .btn-outline-light:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-hover);
+      border: 1px solid #ddd;
     }
 
     .btn-light {
-      background-color: var(--color-primary-blue);
-      color: #fff !important;
+      background-color: #fff;
+      color: #333 !important;
+    }
+    .btn-light:hover {
+        background-color: #f8f9fa;
     }
 
     .btn-outline-light {
-      border: 1.5px solid var(--color-primary-blue);
-      color: var(--color-primary-blue) !important;
+      background-color: transparent;
+      border-color: #aaa;
+      color: var(--color-text-dark) !important;
+    }
+    .btn-outline-light:hover {
+        background-color: #f8f9fa;
+        border-color: #aaa;
     }
 
     /* --- FOOTER --- */
     .footnote {
       text-align: center;
       margin-top: 1.2rem;
-      color: var(--color-text-muted);
+      color: var(--color-text-dark); /* Darker text */
       font-size: 0.9rem;
+      background-color: transparent;
+      padding: 20px;
+      width: 100%;
     }
 
     @media (max-width: 768px) {
       .info-box {
         padding: 1.5rem;
+        margin-top: 70px;
       }
       h2 {
         font-size: 1.5rem;
+      }
+      body {
+        padding: 1rem;
+      }
+      .flip-card {
+        height: 300px; /* Shorter height on mobile */
       }
     }
   </style>
 </head>
 
 <body>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">MedPredict AI</a>
+      <div class="ms-auto d-flex align-items-center gap-3">
+        {% if session['user'] %}
+          <span class="me-2 text-dark">Welcome, {{ session['user'] }}</span>
+          <a href="{{ url_for('auth.logout') }}" class="btn btn-sm btn-light">Logout</a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn btn-sm btn-light">Login</a>
+          <a href="{{ url_for('auth.register') }}" class="btn btn-sm btn-light">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
   <div class="info-box">
     <h2>🍵 Home Remedies & Precautions for <span class="text-warning">{{ disease }}</span></h2>
 
-    <!-- Remedies Card -->
-    <div class="card" onclick="toggleCard(this)">
-      <h4>Home Remedies</h4>
-      <ul>
-        {% for remedy in remedies %}
-          <li><b>{{ remedy }}</b></li>
-        {% endfor %}
-      </ul>
-    </div>
+    <div class="row">
 
-    <!-- Precautions Card -->
-    <div class="card" onclick="toggleCard(this)">
-      <h4>Precautions</h4>
-      <ul>
-        {% for precaution in precautions %}
-          <li><b>{{ precaution }}</b></li>
-        {% endfor %}
-      </ul>
-    </div>
+      <div class="col-md-6">
+        <div class="flip-card" onclick="flipCard(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front card">
+              <h4>Home Remedies</h4>
+              <p class="text-muted">(Click to flip)</p>
+            </div>
+            <div class="flip-card-back card">
+              <h4>Home Remedies</h4>
+              <ul>
+                {% for remedy in remedies %}
+                  <li><b>{{ remedy }}</b></li>
+                {% else %}
+                  <li>No specific home remedies found.</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Buttons -->
+      <div class="col-md-6">
+        <div class="flip-card" onclick="flipCard(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front card">
+              <h4>Precautions</h4>
+              <p class="text-muted">(Click to flip)</p>
+            </div>
+            <div class="flip-card-back card">
+              <h4>Precautions</h4>
+              <ul>
+                {% for precaution in precautions %}
+                  <li><b>{{ precaution }}</b></li>
+                {% else %}
+                    <li>No specific precautions found.</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
     <div class="mt-4">
-      <a href="/predict" class="btn btn-light mt-2 me-2">🔙 New Prediction</a>
-      <a href="/" class="btn btn-outline-light mt-2">🏠 Home</a>
+      <a href="{{ url_for('index') }}" class="btn btn-light mt-2 me-2">🔙 New Prediction</a>
+      <a href="{{ url_for('home') }}" class="btn btn-outline-light mt-2">🏠 Home</a>
     </div>
   </div>
 
   <p class="footnote">© 2025 MedPredict AI. All Rights Reserved.</p>
 
   <script>
-    function toggleCard(card) {
-      card.classList.toggle('expanded');
+    function flipCard(cardElement) {
+      // Find the inner element and toggle the 'flipped' class
+      cardElement.querySelector('.flip-card-inner').classList.toggle('flipped');
     }
   </script>
+  
   {% include 'chatbot.html' %}
 
 </body>
