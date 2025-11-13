@@ -60,20 +60,26 @@
       </a>
     </div>
 
-    <!-- Card 3: Actions -->
-    <div class="card-modern">
+    <!-- Buttons: placed below the two cards, side-by-side on desktop -->
+    <div class="row g-2 mt-3 action-row">
       {% if report_link %}
-        <a href="{{ report_link }}" class="btn btn-light w-100 mb-2">📄 Download PDF Report</a>
+      <div class="col-12 col-md-4">
+        <a href="{{ report_link }}" class="btn btn-light w-100">📄 Download PDF Report</a>
+      </div>
       {% endif %}
 
-      <form method="POST" action="/email_report" class="mt-2">
-        <input type="hidden" name="report_path" value="{{ report_link }}">
-        <input type="hidden" name="disease" value="{{ prediction.disease }}">
-        <input type="hidden" name="confidence" value="{{ prediction.confidence }}">
-        <button type="submit" class="btn btn-warning w-100 mb-2">📧 Email My Report</button>
-      </form>
+      <div class="col-12 col-md-4">
+        <form method="POST" action="/email_report">
+          <input type="hidden" name="report_path" value="{{ report_link }}">
+          <input type="hidden" name="disease" value="{{ prediction.disease }}">
+          <input type="hidden" name="confidence" value="{{ prediction.confidence }}">
+          <button type="submit" class="btn btn-warning w-100">📧 Email My Report</button>
+        </form>
+      </div>
 
-      <a href="/predict" class="btn btn-outline-dark w-100">🔙 New Prediction</a>
+      <div class="col-12 col-md-4">
+        <a href="/predict" class="btn btn-outline-dark w-100">🔙 New Prediction</a>
+      </div>
     </div>
 
   {% endif %}
