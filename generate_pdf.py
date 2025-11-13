@@ -12,6 +12,11 @@ with open("disease_info.json", "r") as f:
     DISEASE_INFO = json.load(f)
 
 def create_report(user_name, symptoms, disease, confidence=None):
+    # Normalize display name: if an email was passed, use the part before '@'
+    display_name = str(user_name) if user_name is not None else "User"
+    if "@" in display_name:
+        display_name = display_name.split("@")[0].replace(".", " ").replace("_", " ").title()
+
     # Fetch doctor, remedies, precautions
     info = DISEASE_INFO.get(disease.lower(), {
         "doctor": "General Physician",
@@ -19,10 +24,11 @@ def create_report(user_name, symptoms, disease, confidence=None):
         "precautions": ["No data available"]
     })
 
-    # File path
+    # File path (use sanitized display name for filename)
     report_folder = "reports"
     os.makedirs(report_folder, exist_ok=True)
-    file_path = os.path.join(report_folder, f"{user_name}_report.pdf")
+    safe_name = "".join(c for c in display_name if c.isalnum() or c in (" ", "-")).strip().replace(" ", "_")
+    file_path = os.path.join(report_folder, f"{safe_name}_report.pdf")
 
     # PDF setup
     doc = SimpleDocTemplate(file_path, pagesize=A4)
@@ -40,7 +46,7 @@ def create_report(user_name, symptoms, disease, confidence=None):
     # User & Date
     date_str = datetime.datetime.now().strftime("%d %B %Y, %I:%M %p")
     user_table = Table([
-        ["Name:", user_name],
+        ["Name:", display_name],
         ["Date:", date_str]
     ], colWidths=[80, 400])
     user_table.setStyle(TableStyle([
