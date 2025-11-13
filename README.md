@@ -13,8 +13,8 @@ A Flask-based AI-powered disease prediction web app that takes user symptoms and
 
 ## 🛠️ Tech Stack
 
-- Python 3, Flask, Jinja2
-- MySQL + flask_mysqldb
+- Python 3, Flask
+- MySQL 
 - FPDF for PDF reports
 - Bootstrap 5 + HTML/CSS
 - scikit-learn (for ML model)
