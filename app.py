@@ -4,11 +4,14 @@ import json
 import pickle
 import numpy as np
 import os
+import io
+import csv
 from generate_pdf import create_report
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from auth import auth_bp, bcrypt
 from flask import send_from_directory
 from flask_mail import Mail, Message
+from flask import Response
 
 
 # ===== DB connection =====
@@ -340,6 +343,37 @@ def logout():
 @app.route('/reports/<path:filename>')
 def serve_report(filename):
     return send_from_directory('reports', filename)
+
+# Add this route near your admin routes
+@app.route('/admin/export/<string:table>')
+def admin_export(table):
+    if not is_admin():
+        flash("Access denied.")
+        return redirect(url_for('admin_panel'))  
+    allowed = {'users': 'users', 'predictions': 'predictions'}
+    if table not in allowed:
+        flash("Unknown export table.")
+        return redirect(url_for('admin_panel'))
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute(f"SELECT * FROM {allowed[table]}")
+        rows = cur.fetchall()
+        cols = [d[0] for d in cur.description]
+
+        output = io.StringIO()
+        writer = csv.writer(output)
+        writer.writerow(cols)
+        writer.writerows(rows)
+        output.seek(0)
+
+        filename = f"{table}_export.csv"
+        return Response(output.getvalue(), mimetype='text/csv',
+                        headers={"Content-Disposition": f"attachment; filename={filename}"})
+    finally:
+        cur.close()
+        conn.close()
 
 if __name__ == '__main__':
     app.run(debug=True)

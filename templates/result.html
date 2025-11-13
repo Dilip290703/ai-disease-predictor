@@ -12,67 +12,78 @@
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container d-flex align-items-center">
-      <a class="navbar-brand" href="/"> MedPredict AI</a>
-      <div class="ms-auto d-flex align-items-center gap-3">
-        {% if session['user'] %}
-          <span class="me-2 text-dark">Welcome, {{ session['name'] or session['user'] }}</span>
-          <a href="/logout" class="btn btn-sm btn-outline-dark">Logout</a>
-        {% else %}
-          <a href="/login" class="btn btn-sm btn-light">Login</a>
-          <a href="/register" class="btn btn-sm btn-outline-dark">Register</a>
-        {% endif %}
-      </div>
-    </div>
-  </nav>
-
-  <!-- Result Section -->
-  <div class="container">
-    <div class="result-box text-center">
-      {% if error %}
-        <h3 class="text-danger">{{ error }}</h3>
-        <a href="/predict" class="btn btn-light mt-3">🔙 Try Again</a>
-
-      {% elif prediction %}
-        <h2>🩺 Predicted Disease:</h2>
-        <h3 class="text-highlight">{{ prediction.disease }}</h3>
-
-        {% if prediction.confidence %}
-          <p><strong>Confidence:</strong> {{ '%.2f' % (prediction.confidence * 100) }}%</p>
-        {% endif %}
-
-        <h4 class="mt-4">Recommended Doctor:</h4>
-        <p>{{ prediction.doctor }}</p>
-
-        <div class="text-center mt-4">
-          <a href="{{ url_for('doctor_page', disease=prediction.disease) }}" class="btn btn-primary btn-lg">
-            👨‍⚕️ See Doctor Recommendation
-          </a>
-        </div>
-
-        {% if report_link %}
-          <a href="{{ report_link }}" class="btn btn-light mt-3">📄 Download PDF Report</a>
-        {% endif %}
-
-        <div class="text-center mt-4">
-          <form method="POST" action="/email_report">
-            <input type="hidden" name="report_path" value="{{ report_link }}">
-            <input type="hidden" name="disease" value="{{ prediction.disease }}">
-            <input type="hidden" name="confidence" value="{{ prediction.confidence }}">
-            <button type="submit" class="btn btn-warning">📧 Email me my report</button>
-          </form>
-        </div>
-
-        <a href="/predict" class="btn btn-outline-dark mt-3">🔙 New Prediction</a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container d-flex align-items-center">
+    <a class="navbar-brand" href="/">MedPredict AI</a>
+    <div class="ms-auto d-flex align-items-center gap-3">
+      {% if session['user'] %}
+        <span class="me-2 text-dark">Welcome, {{ session['name'] or session['user'] }}</span>
+        <a href="/logout" class="btn btn-sm btn-outline-dark">Logout</a>
+      {% else %}
+        <a href="/login" class="btn btn-sm btn-light">Login</a>
+        <a href="/register" class="btn btn-sm btn-outline-dark">Register</a>
       {% endif %}
     </div>
   </div>
+</nav>
 
-  <footer>
-    © 2025 MedPredict AI. All Rights Reserved.
-  </footer>
- 
+<!-- Modern Card Layout -->
+<div class="container result-container">
+
+  {% if error %}
+    <!-- Error Card -->
+    <div class="card-modern error-card">
+      <h3 class="text-danger">{{ error }}</h3>
+      <a href="/predict" class="btn btn-light mt-3">🔙 Try Again</a>
+    </div>
+
+  {% else %}
+
+    <!-- Card 1: Disease Prediction -->
+    <div class="card-modern main-card">
+      <h2>🩺 Predicted Disease</h2>
+      <h3 class="highlight">{{ prediction.disease }}</h3>
+
+      {% if prediction.confidence %}
+        <p class="confidence">Confidence: <strong>{{ '%.2f' % (prediction.confidence * 100) }}%</strong></p>
+      {% endif %}
+    </div>
+
+    <!-- Card 2: Doctor Recommendation -->
+    <div class="card-modern">
+      <h4>👨‍⚕️ Recommended Doctor</h4>
+      <p class="doctor-text">{{ prediction.doctor }}</p>
+
+      <a href="{{ url_for('doctor_page', disease=prediction.disease) }}" class="btn btn-primary w-100 mt-2">
+        View Doctor Details →
+      </a>
+    </div>
+
+    <!-- Card 3: Actions -->
+    <div class="card-modern">
+      {% if report_link %}
+        <a href="{{ report_link }}" class="btn btn-light w-100 mb-2">📄 Download PDF Report</a>
+      {% endif %}
+
+      <form method="POST" action="/email_report" class="mt-2">
+        <input type="hidden" name="report_path" value="{{ report_link }}">
+        <input type="hidden" name="disease" value="{{ prediction.disease }}">
+        <input type="hidden" name="confidence" value="{{ prediction.confidence }}">
+        <button type="submit" class="btn btn-warning w-100 mb-2">📧 Email My Report</button>
+      </form>
+
+      <a href="/predict" class="btn btn-outline-dark w-100">🔙 New Prediction</a>
+    </div>
+
+  {% endif %}
+
+</div>
+
+<!-- Footer -->
+<footer>
+  © 2025 MedPredict AI. All Rights Reserved.
+</footer>
+
 </body>
 </html>
